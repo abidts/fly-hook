@@ -1,0 +1,143 @@
+import { Mountain, Phone, Mail, MapPin, Heart, ArrowRight, Send } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+const quickLinks = [
+  { label: 'About Us', to: '/about' },
+  { label: 'Tour Packages', to: '/packages' },
+  { label: 'Destinations', to: '/destinations' },
+  { label: 'Adventure', to: '/adventure' },
+  { label: 'Gallery', to: '/gallery' },
+  { label: 'Contact', to: '/contact' },
+];
+
+const destinations = [
+  { label: 'Srinagar', to: '/destinations/srinagar' },
+  { label: 'Gulmarg', to: '/destinations/gulmarg' },
+  { label: 'Pahalgam', to: '/destinations/pahalgam' },
+  { label: 'Sonmarg', to: '/destinations/sonmarg' },
+  { label: 'Leh Ladakh', to: '/destinations/leh-ladakh' },
+  { label: 'Dal Lake', to: '/destinations/dal-lake' },
+];
+
+export default function Footer() {
+  return (
+    <footer className="relative bg-slate-950 border-t border-slate-800 pb-24 lg:pb-0">
+      {/* Newsletter CTA */}
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-gradient-to-r from-emerald-600 via-emerald-500 to-sky-500 p-6 sm:p-8 lg:p-12 -translate-y-12 sm:-translate-y-16">
+          {/* Decorative elements */}
+          <div className="absolute top-0 right-0 h-48 sm:h-64 w-48 sm:w-64 rounded-full bg-white/10 blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 left-0 h-32 sm:h-48 w-32 sm:w-48 rounded-full bg-white/5 blur-3xl pointer-events-none" />
+          
+          <div className="relative flex flex-col lg:flex-row items-center justify-between gap-6">
+            <div className="text-center lg:text-left">
+              <h3 className="font-playfair text-2xl sm:text-3xl font-bold text-white">Start Your J&K Journey</h3>
+              <p className="mt-2 text-sm sm:text-base text-emerald-100 max-w-md">
+                Subscribe for exclusive deals and travel tips.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="rounded-xl sm:rounded-2xl bg-white/20 backdrop-blur-sm border border-white/30 px-5 py-3.5 text-white placeholder:text-white/60 outline-none focus:bg-white/30 transition w-full sm:w-64 lg:w-72 text-base"
+              />
+              <button className="flex items-center justify-center gap-2 rounded-xl sm:rounded-2xl bg-white px-6 py-3.5 font-semibold text-emerald-700 transition-all hover:bg-emerald-50 tap-scale shrink-0">
+                <Send className="h-4 w-4" />
+                Subscribe
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Footer */}
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-8 sm:pb-12 -mt-4">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
+          {/* Brand */}
+          <div className="col-span-2 sm:col-span-2 lg:col-span-1">
+            <a href="#home" className="flex items-center gap-3 group">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-sky-500 shadow-lg transition-transform group-hover:scale-110">
+                <Mountain className="h-5 w-5 text-white" />
+              </div>
+              <div>
+                <span className="block font-playfair text-lg font-bold text-white">FLY HOOK</span>
+                <span className="block font-dancing text-sm text-emerald-400 -mt-0.5">Tour & Travel</span>
+              </div>
+            </a>
+            <p className="mt-4 text-sm text-slate-400 leading-relaxed max-w-xs">
+              Your premier travel partner for exploring Kashmir. Creating unforgettable memories since 2014.
+            </p>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h4 className="font-semibold text-white mb-4">Quick Links</h4>
+            <ul className="space-y-2.5">
+              {quickLinks.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    to={link.to}
+                    className="flex items-center gap-2 text-sm text-slate-400 hover:text-emerald-400 transition-colors group"
+                  >
+                    <ArrowRight className="h-3 w-3 opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
+                    <span className="group-hover:translate-x-1 transition-transform">{link.label}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Destinations */}
+          <div>
+            <h4 className="font-semibold text-white mb-4">Destinations</h4>
+            <ul className="space-y-2.5">
+              {destinations.map((dest) => (
+                <li key={dest.label}>
+                  <Link
+                    to={dest.to}
+                    className="flex items-center gap-2 text-sm text-slate-400 hover:text-emerald-400 transition-colors group"
+                  >
+                    <MapPin className="h-3 w-3 text-emerald-500/50 group-hover:text-emerald-400 transition-colors" />
+                    {dest.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div className="col-span-2 sm:col-span-1">
+            <h4 className="font-semibold text-white mb-4">Contact</h4>
+            <ul className="space-y-4">
+              <li className="flex items-start gap-3">
+                <MapPin className="h-4 w-4 text-emerald-400 mt-0.5 shrink-0" />
+                <span className="text-sm text-slate-400">Syedapora Humchi, Hazratbal, Srinagar, J&K 190006</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <Phone className="h-4 w-4 text-emerald-400 shrink-0" />
+                <a href="tel:+916006500852" className="text-sm text-slate-400 hover:text-emerald-400 transition-colors">+91 60065 00852</a>
+              </li>
+              <li className="flex items-center gap-3">
+                <Mail className="h-4 w-4 text-emerald-400 shrink-0" />
+                <a href="mailto:flyhooktourtravel@gmail.com" className="text-sm text-slate-400 hover:text-emerald-400 transition-colors break-all">flyhooktourtravel@gmail.com</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="border-t border-slate-800">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-5 sm:py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-xs sm:text-sm text-slate-500 text-center">
+            © 2026 FLY HOOK Tour & Travel. All rights reserved.
+          </p>
+          <p className="text-xs sm:text-sm text-slate-500">
+            EnnBi Softwares Pvt Ltd.
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+}

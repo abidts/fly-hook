@@ -1,0 +1,1097 @@
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate, Link } from 'react-router-dom';
+import { 
+  ArrowLeft, 
+  MapPin, 
+  Star, 
+  Clock, 
+  Users, 
+  Calendar, 
+  Phone, 
+  Check, 
+  X,
+  Sparkles,
+  Mountain,
+  Utensils,
+  Bed,
+  Car,
+  Camera
+} from 'lucide-react';
+
+interface ItineraryDay {
+  day: number;
+  title: string;
+  description: string;
+}
+
+interface PackageData {
+  name: string;
+  slug: string;
+  duration: string;
+  image: string;
+  destinations: string[];
+  groupSize: string;
+  rating: string;
+  reviews: number;
+  tag: string;
+  tagColor: string;
+  description: string;
+  highlights: string[];
+  itinerary: ItineraryDay[];
+  images: string[];
+  price: {
+    perPerson: number;
+    discount: number;
+    includes: string[];
+    excludes: string[];
+  };
+}
+
+const packages: Record<string, PackageData> = {
+  'short-adventure-trip': {
+    name: 'Short & Adventure Trip',
+    slug: 'short-adventure-trip',
+    duration: '3 Days / 2 Nights',
+    image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200&q=80',
+    destinations: ['Srinagar', 'Gulmarg', 'Tangmarg', 'Dal Lake'],
+    groupSize: '2-6',
+    rating: '4.8',
+    reviews: 164,
+    tag: 'Adventure',
+    tagColor: 'from-orange-500 to-red-600',
+    description: 'A fast-paced Kashmir escape that packs Srinagar charm, Gulmarg adrenaline, and houseboat nostalgia into three unforgettable days.',
+    highlights: [
+      'Compact 3-day plan with airport transfers',
+      'Srinagar Mughal gardens and Shankaracharya Temple',
+      'Full-day Gulmarg adventure with Gondola options',
+      'Houseboat stay on Dal or Nigeen Lake',
+      'All key transfers, meals, and activities covered'
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: 'Arrival & Srinagar City',
+        description: 'Arrive at Srinagar International Airport. Local sightseeing covering Nishat Bagh, Shalimar Bagh, Chashma Shahi, Shankaracharya Temple, Botanical Garden, Boulevard Road and Dal Lake. Overnight stay in a Srinagar hotel.'
+      },
+      {
+        day: 2,
+        title: 'Gulmarg Adventure',
+        description: 'Full-day trip to Gulmarg via Tangmarg and apple gardens. Options for sledging, skiing, ATV, and Gondola rides (both phases: Kongdori & Affarwat). Visit Drung Waterfall by ATV or taxi. Overnight in a houseboat on Dal or Nigeen Lake.'
+      },
+      {
+        day: 3,
+        title: 'Departure',
+        description: 'Breakfast then transfer to Srinagar Airport with memories of your Short & Adventure Trip.'
+      }
+    ],
+    images: [
+      'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200&q=80',
+      'https://images.unsplash.com/photo-1597074866923-dc0589150bf6?w=800&q=80',
+      'https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&q=80',
+      'https://images.unsplash.com/photo-1609766857041-ed402ea8069a?w=800&q=80'
+    ],
+    price: {
+      perPerson: 14999,
+      discount: 12,
+      includes: [
+        'Accommodation in hotel + houseboat',
+        'Daily meals as per plan',
+        'Airport transfers & local transport',
+        'Sightseeing as per itinerary',
+        'Assistance for Gondola & adventure tickets'
+      ],
+      excludes: [
+        'Airfare',
+        'Adventure activity tickets (Gondola/ATV/skiing)',
+        'Personal expenses',
+        'Guide and entry fees not mentioned',
+        'Travel insurance'
+      ]
+    }
+  },
+  'jk-bliss': {
+    name: 'J&K Bliss',
+    slug: 'jk-bliss',
+    duration: '4 Days / 3 Nights',
+    image: 'https://images.unsplash.com/photo-1597074866923-dc0589150bf6?w=1200&q=80',
+    destinations: ['Srinagar', 'Gulmarg', 'Pahalgam'],
+    groupSize: '2-6',
+    rating: '4.8',
+    reviews: 245,
+    tag: 'Best Seller',
+    tagColor: 'from-emerald-500 to-emerald-600',
+    description: 'The best time to strengthen your bonds with your family and make the best memories with them is during a fun-filled vacation with family. And the best place for family vacation is none other than Kashmir. The nice weather, scenic locations and delicious food adds to strengthening bondings with the family and makes the trip way more special for you. You can explore various options from the Kashmir Tour Package for Family for your vacations.',
+    highlights: [
+      'Stay in premium hotels with breakfast included',
+      'Guided sightseeing tours to all major attractions',
+      'Comfortable transportation with an experienced driver',
+      'Enjoy traditional Kashmiri cuisine',
+      'Visit local markets and handicraft centers',
+      'Shikara ride on Dal Lake',
+      'Gondola ride in Gulmarg'
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: 'Arrival in Srinagar',
+        description: 'On your First day after reaching Srinagar and pick up from the airport, go to the houseboat for check-in and take some rest. Have a nice lunch there, then go for a Shikara ride. You will feel a soothing ride in Shikara and will be able to witness life in Dal Lake. Then you can visit Nehru Park which is a small park in the middle of Dal Lake. After an amazing Shikara ride go again to the Houseboat and have dinner and spend your night there. This will be your first day of Kashmir Holiday Packages.'
+      },
+      {
+        day: 2,
+        title: 'Srinagar to Pahalgam',
+        description: 'Have a Breakfast in Srinagar houseboat and then start your journey towards the Pahalgam which will take at least 2 hours. Pahalgam is a place with breathtaking beauty. Here you will visit Martand Sun Temple, Lidder Valley and Rumi Park. You can also do the water boating, and paragliding. After spending the whole day witnessing pahalgam, check in at any of the hotels of your choice and spend a night there. This will be your amazing second day with Kashmir holiday Packages.'
+      },
+      {
+        day: 3,
+        title: 'Pahalgam to Gulmarg',
+        description: 'In the early morning, have a nice breakfast at the hotel in Pahalgam. Then move towards Gulmarg. Gulmarg is a dream destination of every tourist from India. Here you will spend your leisure time. You can go for a Gondola Ride from Apharwat peak of Gulmarg. Then you can go for long Nature walks in its scenic environment. Also you can go for Bird Watching and then move again to Srinagar and check-in and spend a night there.'
+      },
+      {
+        day: 4,
+        title: 'Srinagar to Sonmarg & Departure',
+        description: 'Have a good and tasty breakfast at the Srinagar hotel and then move to Sonmarg which is 80 km away from Srinagar and takes about 1 hour and 45 minutes from Srinagar. In Gulmarg visit Thajiwas Glacier, then do a Temple tour. Do a pony ride and watersports at Manasbal. Spend the whole day like a full fledged excursion. Then go back to Srinagar hotel. Have dinner there and spend the night there.'
+      }
+    ],
+    images: [
+      'https://images.unsplash.com/photo-1597074866923-dc0589150bf6?w=1200&q=80',
+      'https://images.unsplash.com/photo-1581791534721-e599df4417f6?w=800&q=80',
+      'https://images.unsplash.com/photo-1600702653377-2bbad1049612?w=800&q=80',
+      'https://images.unsplash.com/photo-1595815771614-ade9d652a65d?w=800&q=80'
+    ],
+    price: {
+      perPerson: 12999,
+      discount: 20,
+      includes: [
+        'Accommodation in 3/4/5 star hotels',
+        'Daily breakfast & dinner',
+        'Sightseeing as per itinerary',
+        'Transfers and transportation',
+        'Shikara ride on Dal Lake',
+        'All applicable taxes'
+      ],
+      excludes: [
+        'Air/train tickets',
+        'Lunch and other meals not mentioned',
+        'Personal expenses',
+        'Guide & entrance fees',
+        'Gondola ride charges',
+        'Any adventure activities'
+      ]
+    }
+  },
+  'honeymoon-special': {
+    name: 'Honeymoon Special',
+    slug: 'honeymoon-special',
+    duration: '5 Days / 4 Nights',
+    image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=1200&q=80',
+    destinations: ['Srinagar', 'Gulmarg', 'Pahalgam', 'Sonmarg'],
+    groupSize: '2',
+    rating: '4.9',
+    reviews: 189,
+    tag: 'Romantic',
+    tagColor: 'from-rose-500 to-pink-600',
+    description: 'Embark on the journey of a lifetime with our specially curated Honeymoon Package. Experience the romance of Kashmir with your loved one amidst breathtaking landscapes, serene lakes, and luxurious accommodations. Create memories that will last a lifetime.',
+    highlights: [
+      'Luxury houseboat stay on Dal Lake',
+      'Private candlelight dinner',
+      'Couple spa treatments',
+      'Sunset Shikara ride',
+      'Gondola ride in Gulmarg',
+      'Photography session'
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: 'Arrival in Srinagar',
+        description: 'Welcome to Kashmir! On arrival at Srinagar Airport, you will be greeted by our representative and transferred to your luxury houseboat on Dal Lake. Enjoy a welcome drink and check-in. Evening at leisure for a romantic Shikara ride to witness the stunning sunset over the lake.'
+      },
+      {
+        day: 2,
+        title: 'Srinagar to Gulmarg',
+        description: 'After breakfast, drive to Gulmarg, the meadow of flowers. Enjoy a romantic gondola ride to Apharwat Peak with stunning views of snow-capped mountains. Evening at leisure for a candlelight dinner at your hotel.'
+      },
+      {
+        day: 3,
+        title: 'Gulmarg to Pahalgam',
+        description: 'Post breakfast, proceed to Pahalgam, the valley of love. Enroute visit the ancient Martand Sun Temple. Check into your hotel and enjoy the evening at Betaab Valley. Optional activities include horse riding and paragliding.'
+      },
+      {
+        day: 4,
+        title: 'Pahalgam to Srinagar',
+        description: 'After breakfast, explore the beautiful valleys of Pahalgam including Aru Valley and Chandanwari. Return to Srinagar in the evening. Visit the famous Mughal Gardens - Shalimar Bagh and Nishat Bagh.'
+      },
+      {
+        day: 5,
+        title: 'Departure',
+        description: 'After breakfast, check out from the hotel. Transfer to Srinagar Airport for your onward journey with beautiful memories of Kashmir.'
+      }
+    ],
+    images: [
+      'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=1200&q=80',
+      'https://images.unsplash.com/photo-1597074866923-dc0589150bf6?w=800&q=80',
+      'https://images.unsplash.com/photo-1581791534721-e599df4417f6?w=800&q=80',
+      'https://images.unsplash.com/photo-1600702653377-2bbad1049612?w=800&q=80'
+    ],
+    price: {
+      perPerson: 18999,
+      discount: 15,
+      includes: [
+        'Luxury houseboat accommodation',
+        'Daily breakfast & dinner',
+        'Private transportation',
+        'Gondola ride tickets',
+        'Welcome drink on arrival',
+        'Candlelight dinner',
+        'All taxes'
+      ],
+      excludes: [
+        'Airfare',
+        'Lunch',
+        'Personal expenses',
+        'Camera fees',
+        'Adventure activities',
+        'Travel insurance'
+      ]
+    }
+  },
+  'grand-jk': {
+    name: 'Grand J&K',
+    slug: 'grand-jk',
+    duration: '7 Days / 6 Nights',
+    image: 'https://images.unsplash.com/photo-1537126694932-c0f39026528e?w=1200&q=80',
+    destinations: ['Srinagar', 'Gulmarg', 'Pahalgam', 'Sonmarg', 'Leh'],
+    groupSize: '2-10',
+    rating: '5.0',
+    reviews: 312,
+    tag: 'Premium',
+    tagColor: 'from-amber-500 to-orange-600',
+    description: 'Experience the ultimate Kashmir journey with our Grand J&K package. This comprehensive itinerary covers all the major attractions including the mystical Leh Ladakh. Perfect for those who want to explore everything Kashmir has to offer.',
+    highlights: [
+      'Complete Kashmir experience',
+      'Leh Ladakh excursion',
+      'Stay in premium hotels',
+      'All major sightseeing included',
+      'Professional guide',
+      'Adventure activities'
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: 'Arrival in Srinagar',
+        description: 'Arrive at Srinagar and transfer to hotel. Evening Shikara ride on Dal Lake to witness the floating gardens and life on the lake. Overnight stay at hotel.'
+      },
+      {
+        day: 2,
+        title: 'Srinagar to Gulmarg',
+        description: 'Drive to Gulmarg after breakfast. Enjoy the scenic beauty and take the Gondola ride to Kongdoori. Explore the golf course and meadows. Overnight in Gulmarg.'
+      },
+      {
+        day: 3,
+        title: 'Gulmarg to Pahalgam',
+        description: 'Proceed to Pahalgam via Srinagar. Visit the ancient Martand Sun Temple enroute. Check into hotel and explore the local markets. Overnight stay in Pahalgam.'
+      },
+      {
+        day: 4,
+        title: 'Pahalgam Sightseeing',
+        description: 'Full day excursion to Betaab Valley, Aru Valley, and Chandanwari. These pristine valleys offer breathtaking views and are perfect for nature walks. Return to hotel for overnight stay.'
+      },
+      {
+        day: 5,
+        title: 'Pahalgam to Sonmarg',
+        description: 'Drive to Sonmarg, the meadow of gold. Visit the stunning Thajiwas Glacier on pony back. Enjoy the views of snow-capped peaks and the Sindh River. Overnight in Sonmarg.'
+      },
+      {
+        day: 6,
+        title: 'Sonmarg to Leh',
+        description: 'Early morning drive to Leh via Zoji La Pass. Enroute visit Magnetic Hill, Sangam Point, and Gurudwara Pathar Sahib. Arrive in Leh and check into hotel. Acclimatize to the high altitude.'
+      },
+      {
+        day: 7,
+        title: 'Leh Departure',
+        description: 'After breakfast, visit Leh Palace and Shanti Stupa. Explore the local markets for souvenirs. Transfer to Leh Airport for your onward journey.'
+      }
+    ],
+    images: [
+      'https://images.unsplash.com/photo-1537126694932-c0f39026528e?w=1200&q=80',
+      'https://images.unsplash.com/photo-1597074866923-dc0589150bf6?w=800&q=80',
+      'https://images.unsplash.com/photo-1581791534721-e599df4417f6?w=800&q=80',
+      'https://images.unsplash.com/photo-1609766857041-ed402ea8069a?w=800&q=80'
+    ],
+    price: {
+      perPerson: 35999,
+      discount: 10,
+      includes: [
+        '6 nights accommodation',
+        'Daily breakfast & dinner',
+        'All transfers and sightseeing',
+        'Gondola ride Phase 1',
+        'Professional guide',
+        'Permits for Leh',
+        'All taxes'
+      ],
+      excludes: [
+        'Flights to/from Kashmir',
+        'Lunch',
+        'Personal expenses',
+        'Monastery entry fees',
+        'Pony rides',
+        'Travel insurance'
+      ]
+    }
+  },
+  'family-fun': {
+    name: 'Family Fun',
+    slug: 'family-fun',
+    duration: '6 Days / 5 Nights',
+    image: 'https://images.unsplash.com/photo-1595815771614-ade9d652a65d?w=1200&q=80',
+    destinations: ['Srinagar', 'Gulmarg', 'Pahalgam', 'Dal Lake'],
+    groupSize: '4-8',
+    rating: '4.7',
+    reviews: 198,
+    tag: 'Family',
+    tagColor: 'from-sky-500 to-blue-600',
+    description: 'A perfect family vacation package that balances sightseeing with leisure time. Designed keeping in mind the needs of families with children and elderly members. Enjoy quality time together in the lap of nature.',
+    highlights: [
+      'Family-friendly hotels',
+      'Relaxed itinerary',
+      'Kid-friendly activities',
+      'Spacious transportation',
+      'All major attractions',
+      'Flexible meal timings'
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: 'Arrival in Srinagar',
+        description: 'Arrive at Srinagar Airport and transfer to hotel. Rest and acclimatize. Evening visit to Dal Lake for a family Shikara ride. Kids will enjoy feeding the birds. Overnight at hotel.'
+      },
+      {
+        day: 2,
+        title: 'Srinagar Local Sightseeing',
+        description: 'After breakfast, visit the famous Mughal Gardens - Shalimar Bagh, Nishat Bagh, and Chashme Shahi. These gardens are perfect for family photos. Visit Shankaracharya Temple for panoramic views.'
+      },
+      {
+        day: 3,
+        title: 'Srinagar to Gulmarg',
+        description: 'Drive to Gulmarg after breakfast. Enjoy the scenic beauty and take the Gondola ride. Kids will love the pony rides and playing in the meadows. Overnight stay in Gulmarg.'
+      },
+      {
+        day: 4,
+        title: 'Gulmarg to Pahalgam',
+        description: 'Proceed to Pahalgam. Enroute visit the ancient Martand Sun Temple. Check into hotel and enjoy the evening at leisure. Kids can play in the hotel premises while adults relax.'
+      },
+      {
+        day: 5,
+        title: 'Pahalgam Sightseeing',
+        description: 'Visit Betaab Valley and Aru Valley. These places offer easy walking trails suitable for all ages. Enjoy boating at Lidder River. Return to hotel for overnight stay.'
+      },
+      {
+        day: 6,
+        title: 'Departure',
+        description: 'After breakfast, check out and transfer to Srinagar Airport. Shop for souvenirs at Lal Chowk if time permits. Depart with beautiful memories.'
+      }
+    ],
+    images: [
+      'https://images.unsplash.com/photo-1595815771614-ade9d652a65d?w=1200&q=80',
+      'https://images.unsplash.com/photo-1597074866923-dc0589150bf6?w=800&q=80',
+      'https://images.unsplash.com/photo-1581791534721-e599df4417f6?w=800&q=80',
+      'https://images.unsplash.com/photo-1600702653377-2bbad1049612?w=800&q=80'
+    ],
+    price: {
+      perPerson: 16999,
+      discount: 18,
+      includes: [
+        'Family rooms/suites',
+        'Daily breakfast & dinner',
+        'All transfers',
+        'Shikara ride',
+        'Sightseeing as per itinerary',
+        'Child-friendly meals',
+        'All taxes'
+      ],
+      excludes: [
+        'Airfare',
+        'Lunch',
+        'Gondola ride',
+        'Boating charges',
+        'Personal expenses',
+        'Travel insurance'
+      ]
+    }
+  },
+  'adventure-explorer': {
+    name: 'Adventure Explorer',
+    slug: 'adventure-explorer',
+    duration: '8 Days / 7 Nights',
+    image: 'https://images.unsplash.com/photo-1551632811-561732d1e306?w=1200&q=80',
+    destinations: ['Srinagar', 'Sonmarg', 'Leh', 'Pangong', 'Nubra'],
+    groupSize: '2-6',
+    rating: '4.9',
+    reviews: 156,
+    tag: 'Adventure',
+    tagColor: 'from-orange-500 to-red-600',
+    description: 'For the thrill-seekers and adventure enthusiasts! This package takes you through the most challenging and rewarding terrains of Kashmir and Ladakh. Experience high-altitude lakes, mountain passes, and unforgettable adventures.',
+    highlights: [
+      'Pangong Lake camping',
+      'Nubra Valley exploration',
+      'River rafting on Indus',
+      'Khardung La Pass',
+      'Camel safari in Hunder',
+      'Trekking opportunities'
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: 'Arrival in Srinagar',
+        description: 'Arrive at Srinagar and meet our adventure guide. Briefing about the upcoming adventure. Overnight stay in Srinagar.'
+      },
+      {
+        day: 2,
+        title: 'Srinagar to Sonmarg',
+        description: 'Drive to Sonmarg. Visit Thajiwas Glacier. Prepare for the high-altitude journey ahead. Overnight in Sonmarg.'
+      },
+      {
+        day: 3,
+        title: 'Sonmarg to Leh via Zoji La',
+        description: 'Cross the famous Zoji La Pass (3,450m). Drive through Dras, the second coldest inhabited place. Visit Kargil War Memorial. Arrive in Leh and rest for acclimatization.'
+      },
+      {
+        day: 4,
+        title: 'Leh Local Sightseeing',
+        description: 'Visit Leh Palace, Shanti Stupa, and local monasteries. Explore the Tibetan market. Prepare for Pangong journey.'
+      },
+      {
+        day: 5,
+        title: 'Leh to Pangong Lake',
+        description: 'Drive to the stunning Pangong Lake (4,350m) via Chang La Pass. The lake changes colors throughout the day. Camping by the lakeside under the stars.'
+      },
+      {
+        day: 6,
+        title: 'Pangong to Nubra Valley',
+        description: 'Cross Khardung La, one of the world\'s highest motorable passes (5,359m). Descend into Nubra Valley. Visit Diskit Monastery. Overnight in Hunder.'
+      },
+      {
+        day: 7,
+        title: 'Nubra Valley to Leh',
+        description: 'Morning camel safari in the Hunder sand dunes. Visit Sumur village and Panamik hot springs. Return to Leh. Farewell dinner.'
+      },
+      {
+        day: 8,
+        title: 'Departure',
+        description: 'Transfer to Leh Airport with memories of a lifetime. Until we meet again!'
+      }
+    ],
+    images: [
+      'https://images.unsplash.com/photo-1551632811-561732d1e306?w=1200&q=80',
+      'https://images.unsplash.com/photo-1537126694932-c0f39026528e?w=800&q=80',
+      'https://images.unsplash.com/photo-1609766857041-ed402ea8069a?w=800&q=80',
+      'https://images.unsplash.com/photo-1581791534721-e599df4417f6?w=800&q=80'
+    ],
+    price: {
+      perPerson: 42999,
+      discount: 12,
+      includes: [
+        '7 nights accommodation',
+        'All meals during journey',
+        '4x4 vehicle for Ladakh',
+        'Camping equipment at Pangong',
+        'Permits and fees',
+        'Oxygen cylinders',
+        'First aid support'
+      ],
+      excludes: [
+        'Flights',
+        'Personal gear',
+        'Travel insurance (mandatory)',
+        'Personal expenses',
+        'Tips',
+        'Any extra activities'
+      ]
+    }
+  },
+  'budget-jk': {
+    name: 'Budget J&K',
+    slug: 'budget-jk',
+    duration: '3 Days / 2 Nights',
+    image: 'https://images.unsplash.com/photo-1609766857041-ed402ea8069a?w=1200&q=80',
+    destinations: ['Srinagar', 'Gulmarg'],
+    groupSize: '2-4',
+    rating: '4.6',
+    reviews: 320,
+    tag: 'Budget',
+    tagColor: 'from-teal-500 to-cyan-600',
+    description: 'Experience the magic of Kashmir without breaking the bank. This budget-friendly package covers the essential attractions of Srinagar and Gulmarg. Perfect for backpackers and budget-conscious travelers.',
+    highlights: [
+      'Affordable accommodation',
+      'Essential sightseeing',
+      'Local experience',
+      'Flexible itinerary',
+      'Group tours available',
+      'Best value for money'
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: 'Arrival in Srinagar',
+        description: 'Arrive at Srinagar and check into budget hotel/houseboat. Evening Shikara ride on Dal Lake. Visit local markets at Lal Chowk. Overnight stay.'
+      },
+      {
+        day: 2,
+        title: 'Srinagar to Gulmarg Day Trip',
+        description: 'Early morning drive to Gulmarg. Enjoy the meadows and take the Gondola ride (own expense). Return to Srinagar in the evening. Visit Mughal Gardens if time permits.'
+      },
+      {
+        day: 3,
+        title: 'Departure',
+        description: 'After breakfast, check out. Visit Shankaracharya Temple for final views of Srinagar. Transfer to airport for departure.'
+      }
+    ],
+    images: [
+      'https://images.unsplash.com/photo-1609766857041-ed402ea8069a?w=1200&q=80',
+      'https://images.unsplash.com/photo-1597074866923-dc0589150bf6?w=800&q=80',
+      'https://images.unsplash.com/photo-1581791534721-e599df4417f6?w=800&q=80',
+      'https://images.unsplash.com/photo-1595815771614-ade9d652a65d?w=800&q=80'
+    ],
+    price: {
+      perPerson: 7999,
+      discount: 25,
+      includes: [
+        '2 nights accommodation',
+        'Daily breakfast',
+        'All transfers',
+        'Sightseeing by shared cab',
+        'Shikara ride',
+        'All taxes'
+      ],
+      excludes: [
+        'Airfare',
+        'Lunch & dinner (except Day 1)',
+        'Gondola ride',
+        'Entry fees',
+        'Personal expenses',
+        'Tips'
+      ]
+    }
+  }
+};
+
+export default function PackageDetail() {
+  const { packageName } = useParams<{ packageName: string }>();
+  const navigate = useNavigate();
+  const [activeTab, setActiveTab] = useState<'overview' | 'itinerary' | 'inclusions' | 'gallery'>('overview');
+  const [showBookingForm, setShowBookingForm] = useState(false);
+  const [packageData, setPackageData] = useState<PackageData | null>(null);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    date: '',
+    guests: 2,
+    message: ''
+  });
+
+  useEffect(() => {
+    if (packageName) {
+      const foundPackage = packages[packageName];
+      if (foundPackage) {
+        setPackageData(foundPackage);
+      }
+    }
+  }, [packageName]);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Booking submitted:', formData);
+    alert('Thank you for your booking request! We will contact you shortly.');
+    setShowBookingForm(false);
+  };
+
+  if (!packageData) {
+    return (
+      <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center p-4 text-center">
+        <h2 className="text-2xl font-playfair font-bold text-white mb-4">Package not found</h2>
+        <p className="text-slate-400 mb-6">The package you're looking for doesn't exist or has been removed.</p>
+        <Link
+          to="/packages"
+          className="px-6 py-3 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl font-semibold transition-all"
+        >
+          View All Packages
+        </Link>
+      </div>
+    );
+  }
+
+  const discountedPrice = packageData.price.perPerson * (1 - packageData.price.discount / 100);
+
+  return (
+    <div className="min-h-screen bg-slate-950 text-white">
+      {/* Hero Section */}
+      <div className="relative h-[50vh] sm:h-[60vh] overflow-hidden">
+        <img
+          src={packageData.images[activeImageIndex]}
+          alt={packageData.name}
+          className="h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/50 to-transparent" />
+        
+        {/* Back Button */}
+        <button
+          onClick={() => navigate('/packages')}
+          className="absolute top-20 left-4 sm:left-8 flex items-center gap-2 px-4 py-2 bg-black/50 backdrop-blur-sm rounded-full border border-white/20 hover:bg-black/70 transition-all"
+        >
+          <ArrowLeft className="h-5 w-5" />
+          <span className="hidden sm:inline">Back</span>
+        </button>
+
+        {/* Title Overlay */}
+        <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-12">
+          <div className="container mx-auto">
+            <div className="flex flex-wrap items-center gap-3 mb-3">
+              <span className={`rounded-full bg-gradient-to-r ${packageData.tagColor} px-3 py-1 text-xs font-bold text-white shadow-lg`}>
+                {packageData.tag}
+              </span>
+              <div className="flex items-center gap-1 rounded-full bg-black/50 backdrop-blur-sm px-3 py-1">
+                <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
+                <span className="text-sm font-medium">{packageData.rating}</span>
+                <span className="text-slate-400">({packageData.reviews} reviews)</span>
+              </div>
+            </div>
+            <h1 className="font-playfair text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3">
+              {packageData.name}
+            </h1>
+            <div className="flex items-center gap-2 text-emerald-400 mb-3">
+              <MapPin className="h-5 w-5" />
+              <span className="font-medium">{packageData.destinations.join(' → ')}</span>
+            </div>
+            <div className="flex flex-wrap gap-4 text-sm text-slate-300">
+              <span className="flex items-center gap-2">
+                <Clock className="h-4 w-4 text-emerald-400" />
+                {packageData.duration}
+              </span>
+              <span className="flex items-center gap-2">
+                <Users className="h-4 w-4 text-sky-400" />
+                {packageData.groupSize} People
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Image Thumbnails */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-10">
+        <div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar">
+          {packageData.images.map((img, index) => (
+            <button
+              key={index}
+              onClick={() => setActiveImageIndex(index)}
+              className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
+                activeImageIndex === index 
+                  ? 'border-emerald-500 ring-2 ring-emerald-500/30' 
+                  : 'border-slate-700 opacity-70 hover:opacity-100'
+              }`}
+            >
+              <img src={img} alt={`${packageData.name} ${index + 1}`} className="h-full w-full object-cover" />
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Main Content */}
+          <div className="lg:col-span-2">
+            {/* Tabs */}
+            <div className="flex gap-2 mb-6 overflow-x-auto no-scrollbar">
+              {[
+                { id: 'overview', label: 'Overview', icon: Sparkles },
+                { id: 'itinerary', label: 'Itinerary', icon: Calendar },
+                { id: 'inclusions', label: 'Inclusions', icon: Check },
+                { id: 'gallery', label: 'Gallery', icon: Camera }
+              ].map(({ id, label, icon: Icon }) => (
+                <button
+                  key={id}
+                  onClick={() => setActiveTab(id as typeof activeTab)}
+                  className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium text-sm whitespace-nowrap transition-all ${
+                    activeTab === id
+                      ? 'bg-emerald-500 text-white shadow-lg shadow-emerald-500/30'
+                      : 'bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:border-slate-600'
+                  }`}
+                >
+                  <Icon className="h-4 w-4" />
+                  {label}
+                </button>
+              ))}
+            </div>
+
+            {/* Tab Content */}
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 mb-6">
+              {activeTab === 'overview' && (
+                <div>
+                  <h3 className="font-playfair text-2xl font-bold text-white mb-4 flex items-center gap-2">
+                    <Sparkles className="h-5 w-5 text-sky-400" />
+                    About This Package
+                  </h3>
+                  <p className="text-slate-300 leading-relaxed mb-6">{packageData.description}</p>
+
+                  <h4 className="font-semibold text-white mb-3 flex items-center gap-2">
+                    <Mountain className="h-5 w-5 text-emerald-400" />
+                    Package Highlights
+                  </h4>
+                  <ul className="space-y-2 mb-6">
+                    {packageData.highlights.map((highlight: string, index: number) => (
+                      <li key={index} className="flex items-start gap-3">
+                        <Check className="h-5 w-5 text-emerald-400 mt-0.5 flex-shrink-0" />
+                        <span className="text-slate-300">{highlight}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Quick Info Cards */}
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div className="bg-slate-800/50 rounded-xl p-4 flex items-center gap-3">
+                      <div className="h-10 w-10 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                        <Bed className="h-5 w-5 text-emerald-400" />
+                      </div>
+                      <div>
+                        <p className="text-xs text-slate-400">Accommodation</p>
+                        <p className="font-medium text-white">3/4/5 Star Hotels</p>
+                      </div>
+                    </div>
+                    <div className="bg-slate-800/50 rounded-xl p-4 flex items-center gap-3">
+                      <div className="h-10 w-10 rounded-full bg-sky-500/20 flex items-center justify-center">
+                        <Utensils className="h-5 w-5 text-sky-400" />
+                      </div>
+                      <div>
+                        <p className="text-xs text-slate-400">Meals</p>
+                        <p className="font-medium text-white">Breakfast & Dinner</p>
+                      </div>
+                    </div>
+                    <div className="bg-slate-800/50 rounded-xl p-4 flex items-center gap-3">
+                      <div className="h-10 w-10 rounded-full bg-amber-500/20 flex items-center justify-center">
+                        <Car className="h-5 w-5 text-amber-400" />
+                      </div>
+                      <div>
+                        <p className="text-xs text-slate-400">Transport</p>
+                        <p className="font-medium text-white">Private Cab</p>
+                      </div>
+                    </div>
+                    <div className="bg-slate-800/50 rounded-xl p-4 flex items-center gap-3">
+                      <div className="h-10 w-10 rounded-full bg-rose-500/20 flex items-center justify-center">
+                        <MapPin className="h-5 w-5 text-rose-400" />
+                      </div>
+                      <div>
+                        <p className="text-xs text-slate-400">Sightseeing</p>
+                        <p className="font-medium text-white">All Major Attractions</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === 'itinerary' && (
+                <div>
+                  <h3 className="font-playfair text-2xl font-bold text-white mb-6 flex items-center gap-2">
+                    <Calendar className="h-5 w-5 text-sky-400" />
+                    Day-wise Itinerary
+                  </h3>
+                  <div className="space-y-6">
+                    {packageData.itinerary.map((day: ItineraryDay, index: number) => (
+                      <div key={day.day} className="flex gap-4">
+                        <div className="flex flex-col items-center">
+                          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-bold text-sm">
+                            {day.day}
+                          </div>
+                          {index < packageData.itinerary.length - 1 && (
+                            <div className="w-0.5 h-full bg-slate-800 my-2"></div>
+                          )}
+                        </div>
+                        <div className="flex-1 pb-6">
+                          <h4 className="font-semibold text-white mb-2">{day.title}</h4>
+                          <p className="text-slate-400 text-sm leading-relaxed">{day.description}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {activeTab === 'inclusions' && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <h4 className="font-semibold text-white mb-4 flex items-center gap-2">
+                      <Check className="h-5 w-5 text-emerald-400" />
+                      What's Included
+                    </h4>
+                    <ul className="space-y-3">
+                      {packageData.price.includes.map((item: string, index: number) => (
+                        <li key={index} className="flex items-start gap-3">
+                          <Check className="h-5 w-5 text-emerald-400 mt-0.5 flex-shrink-0" />
+                          <span className="text-slate-300">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-white mb-4 flex items-center gap-2">
+                      <X className="h-5 w-5 text-rose-400" />
+                      What's Not Included
+                    </h4>
+                    <ul className="space-y-3">
+                      {packageData.price.excludes.map((item: string, index: number) => (
+                        <li key={index} className="flex items-start gap-3">
+                          <X className="h-5 w-5 text-rose-400 mt-0.5 flex-shrink-0" />
+                          <span className="text-slate-300">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === 'gallery' && (
+                <div>
+                  <h3 className="font-playfair text-2xl font-bold text-white mb-6 flex items-center gap-2">
+                    <Camera className="h-5 w-5 text-sky-400" />
+                    Photo Gallery
+                  </h3>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                    {packageData.images.map((img, index: number) => (
+                      <div
+                        key={index}
+                        className="relative aspect-square rounded-xl overflow-hidden border border-slate-800 group cursor-pointer"
+                        onClick={() => setActiveImageIndex(index)}
+                      >
+                        <img
+                          src={img}
+                          alt={`${packageData.name} ${index + 1}`}
+                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Sidebar */}
+          <div className="lg:col-span-1">
+            <div className="sticky top-24 space-y-6">
+              {/* Price Card */}
+              <div className="bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 rounded-2xl p-6">
+                <div className="mb-4">
+                  <div className="flex items-baseline gap-2 mb-1">
+                    <span className="text-3xl font-bold text-white">₹{discountedPrice.toLocaleString()}</span>
+                    <span className="text-slate-500 line-through">₹{packageData.price.perPerson.toLocaleString()}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-emerald-400 font-semibold">{packageData.price.discount}% OFF</span>
+                    <span className="text-slate-400 text-sm">per person</span>
+                  </div>
+                </div>
+
+                <div className="space-y-3 mb-6 py-4 border-t border-b border-slate-700">
+                  <div className="flex items-center justify-between">
+                    <span className="text-slate-400 flex items-center gap-2">
+                      <Clock className="h-4 w-4" />
+                      Duration
+                    </span>
+                    <span className="font-medium text-white">{packageData.duration}</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-slate-400 flex items-center gap-2">
+                      <Users className="h-4 w-4" />
+                      Group Size
+                    </span>
+                    <span className="font-medium text-white">Up to {packageData.groupSize} people</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-slate-400 flex items-center gap-2">
+                      <MapPin className="h-4 w-4" />
+                      Destinations
+                    </span>
+                    <span className="font-medium text-white">{packageData.destinations.length} Places</span>
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => setShowBookingForm(true)}
+                  className="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-semibold py-3.5 px-4 rounded-xl hover:shadow-lg hover:shadow-emerald-500/30 transition-all tap-scale mb-3"
+                >
+                  Book Now
+                </button>
+
+                <a
+                  href="tel:+919999999999"
+                  className="flex items-center justify-center gap-2 w-full py-3 border border-slate-700 rounded-xl text-slate-300 hover:bg-slate-800 transition-all tap-scale"
+                >
+                  <Phone className="h-4 w-4" />
+                  +91 99999 99999
+                </a>
+              </div>
+
+              {/* Why Book With Us */}
+              <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                <h3 className="font-semibold text-white mb-4 flex items-center gap-2">
+                  <Sparkles className="h-5 w-5 text-amber-400" />
+                  Why Book With Us
+                </h3>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <div className="h-6 w-6 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Check className="h-3.5 w-3.5 text-emerald-400" />
+                    </div>
+                    <span className="text-slate-300 text-sm">Best Price Guarantee</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="h-6 w-6 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Check className="h-3.5 w-3.5 text-emerald-400" />
+                    </div>
+                    <span className="text-slate-300 text-sm">No Hidden Charges</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="h-6 w-6 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Check className="h-3.5 w-3.5 text-emerald-400" />
+                    </div>
+                    <span className="text-slate-300 text-sm">24/7 Customer Support</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="h-6 w-6 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Check className="h-3.5 w-3.5 text-emerald-400" />
+                    </div>
+                    <span className="text-slate-300 text-sm">Experienced Local Guides</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      {/* Booking Form Modal */}
+      {showBookingForm && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="bg-slate-900 border border-slate-700 rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6">
+              <div className="flex justify-between items-center mb-6">
+                <h3 className="font-playfair text-xl font-bold text-white">Book {packageData.name}</h3>
+                <button
+                  onClick={() => setShowBookingForm(false)}
+                  className="text-slate-400 hover:text-white transition-colors"
+                >
+                  <X className="h-6 w-6" />
+                </button>
+              </div>
+
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-slate-300 mb-1">Full Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all"
+                    placeholder="Your full name"
+                  />
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-1">Email</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      required
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all"
+                      placeholder="your@email.com"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="phone" className="block text-sm font-medium text-slate-300 mb-1">Phone</label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      required
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all"
+                      placeholder="+91 "
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="date" className="block text-sm font-medium text-slate-300 mb-1">Travel Date</label>
+                    <input
+                      type="date"
+                      id="date"
+                      name="date"
+                      required
+                      value={formData.date}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="guests" className="block text-sm font-medium text-slate-300 mb-1">Guests</label>
+                    <select
+                      id="guests"
+                      name="guests"
+                      value={formData.guests}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all"
+                    >
+                      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => (
+                        <option key={num} value={num}>{num} {num === 1 ? 'Person' : 'People'}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-slate-300 mb-1">Special Requests</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows={3}
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all resize-none"
+                    placeholder="Any special requirements or preferences?"
+                  ></textarea>
+                </div>
+
+                <div className="pt-2">
+                  <button
+                    type="submit"
+                    className="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-semibold py-3.5 px-4 rounded-xl hover:shadow-lg hover:shadow-emerald-500/30 transition-all tap-scale"
+                  >
+                    Send Booking Request
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
