@@ -289,7 +289,7 @@ const CabsPage: React.FC = () => {
               <div className="mt-6 text-center">
                 <p className="text-slate-400">Or book directly via WhatsApp:</p>
                 <a
-                  href="https://wa.me/917006277077"
+                  href="https://wa.me/916006500852"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center mt-3 bg-green-600 hover:bg-green-700 text-white font-medium py-2.5 px-6 rounded-full transition-colors"

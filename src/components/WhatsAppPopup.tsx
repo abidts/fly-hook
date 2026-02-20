@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { MessageCircle, X, Minimize2, Maximize2 } from 'lucide-react';
 
-const WHATSAPP_NUMBER = '917006277077';
+const WHATSAPP_NUMBER = '916006500852';
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hi! I\'m interested in Kashmir tour packages. Please share more details.')}`;
 
 export default function WhatsAppPopup() {

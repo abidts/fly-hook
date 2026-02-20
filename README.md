@@ -250,9 +250,9 @@ The platform offers a diverse fleet of vehicles:
 Create a `.env` file in the root directory:
 
 ```env
-VITE_WHATSAPP_NUMBER=917006277077
-VITE_CONTACT_PHONE=+917006277077
-VITE_CONTACT_EMAIL=info@flyhooktours.com
+VITE_WHATSAPP_NUMBER=916006500852
+VITE_CONTACT_PHONE=+916006500852
+VITE_CONTACT_EMAIL=flyhooktourtravel@gmail.com
 VITE_API_URL=https://api.flyhooktours.com
 ```
 
@@ -341,9 +341,9 @@ We welcome contributions! Please follow these steps:
 
 | Contact | Details |
 |---------|---------|
-| **WhatsApp** | [+91 7006277077](https://wa.me/917006277077) |
-| **Phone** | +91 7006277077 |
-| **Email** | info@flyhooktours.com |
+| **WhatsApp** | [+91 6006500852](https://wa.me/916006500852) |
+| **Phone** | +91 6006500852 |
+| **Email** | flyhooktourtravel@gmail.com |
 | **Website** | flyhooktours.com |
 
 ### Social Media
