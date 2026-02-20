@@ -1,77 +1,36 @@
-import { useState, useRef } from 'react';
-import { MapPin, Phone, Star, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import { MapPin, Phone, Star, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
-
-const destinations = [
-  {
-    name: 'Gulmarg',
-    tagline: 'Meadow of Flowers',
-    image: 'https://images.unsplash.com/photo-1581791534721-e599df4417f6?w=800&q=80',
-    desc: 'World-class skiing destination and the highest gondola ride in Asia.',
-    rating: '4.9',
-    highlight: 'Ski Paradise',
-    slug: 'gulmarg',
-  },
-  {
-    name: 'Pahalgam',
-    tagline: 'Valley of Shepherds',
-    image: 'https://images.unsplash.com/photo-1600702653377-2bbad1049612?w=800&q=80',
-    desc: 'A pristine valley with lush meadows, rivers, and the starting point of Amarnath Yatra.',
-    rating: '4.8',
-    highlight: 'River Valley',
-    slug: 'pahalgam',
-  },
-  {
-    name: 'Sonmarg',
-    tagline: 'Meadow of Gold',
-    image: 'https://images.unsplash.com/photo-1609766857041-ed402ea8069a?w=800&q=80',
-    desc: 'Gateway to Ladakh with glaciers, meadows, and the stunning Thajiwas Glacier.',
-    rating: '4.9',
-    highlight: 'Golden Meadows',
-    slug: 'sonmarg',
-  },
-  {
-    name: 'Dal Lake',
-    tagline: 'Jewel of Srinagar',
-    image: 'https://images.unsplash.com/photo-1597074866923-dc0589150bf6?w=800&q=80',
-    desc: 'Iconic houseboat stays, Shikara rides, and floating gardens on crystal waters.',
-    rating: '4.9',
-    highlight: 'Houseboat Stay',
-    slug: 'dal-lake',
-  },
-  {
-    name: 'Leh Ladakh',
-    tagline: 'Land of High Passes',
-    image: 'https://images.unsplash.com/photo-1537126694932-c0f39026528e?w=800&q=80',
-    desc: 'Breathtaking moonscapes, ancient monasteries, and the highest motorable passes.',
-    rating: '5.0',
-    highlight: 'Adventure Hub',
-    slug: 'leh-ladakh',
-  },
-  {
-    name: 'Srinagar',
-    tagline: 'City of Gardens',
-    image: 'https://images.unsplash.com/photo-1595815771614-ade9d652a65d?w=800&q=80',
-    desc: 'Mughal gardens, historic old city, and the famous handicraft bazaars.',
-    rating: '4.7',
-    highlight: 'Heritage City',
-    slug: 'srinagar',
-  },
-];
+import { getDestinations } from '../services/api';
+type Destination = {
+  name: string;
+  tagline: string;
+  image: string;
+  desc: string;
+  rating: number;
+  highlight: string;
+  slug: string;
+};
 
 export default function DestinationsPage() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [destinations, setDestinations] = useState<Destination[]>([]);
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  const scroll = (direction: 'left' | 'right') => {
-    if (scrollRef.current) {
-      const cardWidth = scrollRef.current.clientWidth < 640 ? 260 : 320;
-      scrollRef.current.scrollBy({
-        left: direction === 'left' ? -cardWidth : cardWidth,
-        behavior: 'smooth',
-      });
-    }
-  };
+  useEffect(() => {
+    getDestinations().then((data: any) => {
+      const normalized = (data || []).map((dest: any) => ({
+        name: dest.name,
+        tagline: dest.tag || dest.name,
+        image: dest.image,
+        desc: dest.description || dest.desc || dest.name,
+        rating: typeof dest.rating === 'string' ? parseFloat(dest.rating) : dest.rating || 0,
+        highlight: dest.tag || 'Popular',
+        slug: dest.name.toLowerCase().replace(/\s+/g, '-'),
+      }));
+      setDestinations(normalized);
+    });
+  }, []);
 
   return (
     <div className="min-h-screen bg-slate-950 text-white">
@@ -88,22 +47,6 @@ export default function DestinationsPage() {
                 Explore Enchanting
                 <span className="block gradient-text">Destinations</span>
               </h1>
-            </div>
-
-            {/* Navigation arrows for desktop */}
-            <div className="hidden lg:flex items-center gap-3">
-              <button
-                onClick={() => scroll('left')}
-                className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-800 border border-slate-700 text-white transition-all hover:bg-sky-500 hover:border-sky-500 hover:shadow-lg hover:shadow-sky-500/30 tap-scale"
-              >
-                <ChevronLeft className="h-5 w-5" />
-              </button>
-              <button
-                onClick={() => scroll('right')}
-                className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-800 border border-slate-700 text-white transition-all hover:bg-sky-500 hover:border-sky-500 hover:shadow-lg hover:shadow-sky-500/30 tap-scale"
-              >
-                <ChevronRight className="h-5 w-5" />
-              </button>
             </div>
           </div>
 
@@ -175,9 +118,7 @@ export default function DestinationsPage() {
 
           {/* Mobile swipe hint */}
           <div className="mt-4 flex items-center justify-center gap-2 text-xs text-slate-500 lg:hidden">
-            <ChevronLeft className="h-4 w-4 swipe-hint" style={{ animationDirection: 'reverse' }} />
-            <span>Swipe to explore destinations</span>
-            <ChevronRight className="h-4 w-4 swipe-hint" />
+            <span className="opacity-80">Swipe to explore destinations</span>
           </div>
         </div>
       </main>

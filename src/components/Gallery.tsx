@@ -2,18 +2,18 @@ import { useState } from 'react';
 import { X, ZoomIn, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 
 const images = [
-  { src: 'https://images.unsplash.com/photo-1597074866923-dc0589150bf6?w=800&q=80', title: 'Dal Lake, Srinagar', category: 'Lakes' },
-  { src: 'https://images.unsplash.com/photo-1581791534721-e599df4417f6?w=800&q=80', title: 'Gulmarg Gondola', category: 'Mountains' },
-  { src: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800&q=80', title: 'Tulip Garden', category: 'Gardens' },
+  { src: 'https://images.unsplash.com/photo-1665034640942-07c4170c2872?w=800&q=80', title: 'Kashmir Bliss', category: 'Lakes' },
+  { src: 'https://images.unsplash.com/photo-1568889753852-196c487a536e?w=800&q=80', title: 'Gulmarg Gondola', category: 'Mountains' },
+  { src: 'https://images.unsplash.com/photo-1656221077978-7ded95487a98?w=800&q=80', title: 'Tulip Garden', category: 'Gardens' },
   { src: 'https://images.unsplash.com/photo-1595815771614-ade9d652a65d?w=800&q=80', title: 'Houseboat on Dal Lake', category: 'Lakes' },
-  { src: 'https://images.unsplash.com/photo-1600702653377-2bbad1049612?w=800&q=80', title: 'Pahalgam Valley', category: 'Valleys' },
-  { src: 'https://images.unsplash.com/photo-1537126694932-c0f39026528e?w=800&q=80', title: 'Pangong Lake, Ladakh', category: 'Lakes' },
-  { src: 'https://images.unsplash.com/photo-1609766857041-ed402ea8069a?w=800&q=80', title: 'Sonmarg Meadow', category: 'Valleys' },
-  { src: 'https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&q=80', title: 'J&K Trek', category: 'Adventure' },
-  { src: 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800&q=80', title: 'Mountain Camping', category: 'Adventure' },
-  { src: 'https://images.unsplash.com/photo-1475483768296-6163e08872a1?w=800&q=80', title: 'J&K Campfire', category: 'Adventure' },
-  { src: 'https://images.unsplash.com/photo-1567157577867-05ccb1388e13?w=800&q=80', title: 'Snowy Peaks', category: 'Mountains' },
-  { src: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?w=800&q=80', title: 'Heritage Kashmir', category: 'Culture' },
+  { src: 'https://images.unsplash.com/photo-1694368906722-49decee647be?w=800&q=80', title: 'Pahalgam Valley', category: 'Valleys' },
+  { src: 'https://images.unsplash.com/photo-1685555845405-1503f76a5462?w=800&q=80', title: 'Pangong Lake, Ladakh', category: 'Lakes' },
+  { src: 'https://images.unsplash.com/photo-1629574494582-54ae9a599656?w=800&q=80', title: 'Sonmarg Meadow', category: 'Valleys' },
+  { src: 'https://images.unsplash.com/photo-1642781087094-0430c9390ca3?w=800&q=80', title: 'J&K Trek', category: 'Adventure' },
+  { src: 'https://images.unsplash.com/photo-1683434576805-a4f85ea47bbf?w=800&q=80', title: 'Mountain Camping', category: 'Adventure' },
+  { src: 'https://images.unsplash.com/photo-1722641277067-a7fba0ad1a59?w=800&q=80', title: 'J&K Campfire', category: 'Adventure' },
+  { src: 'https://images.unsplash.com/photo-1704796531503-2ebd32bbaa8c?w=800&q=80', title: 'Snowy Peaks', category: 'Mountains' },
+  { src: 'https://images.unsplash.com/photo-1642681490734-cc3d694e011a?w=800&q=80', title: 'Heritage Kashmir', category: 'Culture' },
 ];
 
 const categories = ['All', 'Lakes', 'Mountains', 'Valleys', 'Adventure'];

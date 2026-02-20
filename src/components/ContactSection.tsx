@@ -13,7 +13,7 @@ export default function ContactSection() {
       {/* Background */}
       <div className="absolute inset-0 pointer-events-none">
         <img
-          src="https://images.unsplash.com/photo-1597074866923-dc0589150bf6?w=1920&q=60"
+          src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1920&q=60"
           alt=""
           className="h-full w-full object-cover opacity-[0.03]"
         />

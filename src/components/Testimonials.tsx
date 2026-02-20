@@ -17,7 +17,7 @@ const reviews = [
     avatar: 'PP',
     rating: 5,
     text: 'Best family vacation ever! The team took care of everything. My kids loved the pony rides in Pahalgam and snow play in Gulmarg. Highly recommended!',
-    trip: 'J&K Bliss',
+    trip: 'Kashmir Bliss',
     date: 'Jan 2024',
   },
   {

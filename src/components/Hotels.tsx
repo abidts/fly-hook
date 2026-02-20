@@ -7,7 +7,7 @@ const featuredHotels = [
   {
     name: 'The LaLiT Grand Palace Srinagar',
     location: 'Srinagar',
-    image: 'https://images.unsplash.com/photo-1611262588024-d12430a2aa8d?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80',
     rating: 4.9,
     amenities: ['Wifi', 'Restaurant', 'Spa', 'Pool'],
     type: 'Luxury',
@@ -15,7 +15,7 @@ const featuredHotels = [
   {
     name: 'The Khyber Himalayan Resort & Spa',
     location: 'Gulmarg',
-    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1486944670663-e0a2ea5018eb?auto=format&fit=crop&w=800&q=80',
     rating: 4.9,
     amenities: ['Ski Access', 'Restaurant', 'Spa', 'Bar'],
     type: 'Luxury',
@@ -23,7 +23,7 @@ const featuredHotels = [
   {
     name: 'Radisson Collection Hotel & Spa, Riverfront Srinagar',
     location: 'Srinagar',
-    image: 'https://images.unsplash.com/photo-1571003706349-9db9d2b9e9b1?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1758448756167-88dc934c58e4?auto=format&fit=crop&w=800&q=80',
     rating: 4.8,
     amenities: ['Wifi', 'Restaurant', 'Spa', 'River View'],
     type: 'Luxury',

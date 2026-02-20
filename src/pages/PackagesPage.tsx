@@ -1,12 +1,11 @@
-import { useRef, useEffect, useState } from 'react';
-import { Clock, MapPin, Users, Star, Check, Phone, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
+import { Clock, MapPin, Users, Star, Check, Phone, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const packages = [
   {
-    name: 'J&K Bliss',
+    name: 'Kashmir Bliss',
     duration: '4 Days / 3 Nights',
-    image: 'https://images.unsplash.com/photo-1597074866923-dc0589150bf6?w=800&q=80',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/9/9f/Srinagar_to_Pahalgam_-_vrvvkbjk2k23iph_%2810%29.jpg',
     destinations: ['Srinagar', 'Gulmarg', 'Pahalgam'],
     groupSize: '2-6',
     rating: '4.8',
@@ -32,7 +31,7 @@ const packages = [
   {
     name: 'Grand J&K',
     duration: '7 Days / 6 Nights',
-    image: 'https://images.unsplash.com/photo-1537126694932-c0f39026528e?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1200&q=80',
     destinations: ['Srinagar', 'Gulmarg', 'Pahalgam', 'Sonmarg', 'Leh'],
     groupSize: '2-10',
     rating: '5.0',
@@ -97,43 +96,6 @@ const packages = [
 ];
 
 export default function PackagesPage() {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
-  const [activeCard, setActiveCard] = useState(0);
-
-  const checkScroll = () => {
-    if (scrollRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-      setCanScrollLeft(scrollLeft > 10);
-      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
-
-      // Calculate active card for mobile indicator
-      const cardWidth = 300;
-      const newActive = Math.round(scrollLeft / cardWidth);
-      setActiveCard(Math.min(newActive, packages.length - 1));
-    }
-  };
-
-  useEffect(() => {
-    checkScroll();
-    const el = scrollRef.current;
-    if (el) {
-      el.addEventListener('scroll', checkScroll);
-      return () => el.removeEventListener('scroll', checkScroll);
-    }
-  }, []);
-
-  const scroll = (direction: 'left' | 'right') => {
-    if (scrollRef.current) {
-      const cardWidth = scrollRef.current.clientWidth < 640 ? 280 : 380;
-      scrollRef.current.scrollBy({
-        left: direction === 'left' ? -cardWidth : cardWidth,
-        behavior: 'smooth',
-      });
-    }
-  };
-
   return (
     <div className="min-h-screen bg-slate-950 text-white">
       <main className="pt-16 pb-16 sm:py-24">
@@ -153,55 +115,22 @@ export default function PackagesPage() {
                 Choose from our curated packages. Contact us for custom itineraries!
               </p>
             </div>
-
-            {/* Desktop Slider Nav */}
-            <div className="hidden sm:flex items-center gap-3">
-              <button
-                onClick={() => scroll('left')}
-                disabled={!canScrollLeft}
-                className={`flex h-12 w-12 items-center justify-center rounded-full border transition-all tap-scale ${
-                  canScrollLeft
-                    ? 'bg-slate-800 border-slate-700 text-white hover:bg-emerald-500 hover:border-emerald-500 hover:shadow-lg hover:shadow-emerald-500/30'
-                    : 'bg-slate-900 border-slate-800 text-slate-600 cursor-not-allowed'
-                }`}
-              >
-                <ChevronLeft className="h-5 w-5" />
-              </button>
-              <button
-                onClick={() => scroll('right')}
-                disabled={!canScrollRight}
-                className={`flex h-12 w-12 items-center justify-center rounded-full border transition-all tap-scale ${
-                  canScrollRight
-                    ? 'bg-slate-800 border-slate-700 text-white hover:bg-emerald-500 hover:border-emerald-500 hover:shadow-lg hover:shadow-emerald-500/30'
-                    : 'bg-slate-900 border-slate-800 text-slate-600 cursor-not-allowed'
-                }`}
-              >
-                <ChevronRight className="h-5 w-5" />
-              </button>
-            </div>
           </div>
 
-          {/* Horizontal Slider */}
-          <div
-            ref={scrollRef}
-            className="mt-8 sm:mt-12 flex gap-4 sm:gap-6 overflow-x-auto no-scrollbar pb-4 -mx-4 px-4 snap-x snap-mandatory scroll-smooth"
-          >
-            {packages.map((pkg, index) => (
+          {/* Grid */}
+          <div className="mt-8 sm:mt-12 grid gap-5 sm:gap-6 lg:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+            {packages.map((pkg) => (
               <Link
                 key={pkg.name}
                 to={`/packages/${pkg.slug}`}
-                className="group relative flex-shrink-0 w-[280px] sm:w-[360px] overflow-hidden rounded-3xl bg-slate-900/80 border border-slate-800 transition-all duration-500 hover:border-slate-700 snap-start tap-scale"
-                style={{
-                  transform: activeCard === index ? 'scale(1)' : 'scale(0.98)',
-                  opacity: activeCard === index ? 1 : 0.8,
-                }}
+                className="group relative overflow-hidden rounded-3xl bg-slate-900/80 border border-slate-800 transition-all duration-500 hover:border-slate-700 tap-scale shadow-lg shadow-black/10 hover:shadow-emerald-500/10"
               >
                 {/* Image */}
-                <div className="relative h-44 sm:h-56 overflow-hidden">
+                <div className="relative h-44 sm:h-52 lg:h-56 overflow-hidden">
                   <img
                     src={pkg.image}
                     alt={pkg.name}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/30 to-transparent" />
 
@@ -223,7 +152,7 @@ export default function PackagesPage() {
                 </div>
 
                 {/* Details */}
-                <div className="p-4 sm:p-5">
+                <div className="p-4 sm:p-5 flex flex-col gap-3">
                   {/* Duration & Group */}
                   <div className="flex flex-wrap items-center gap-3 text-xs sm:text-sm text-slate-400">
                     <span className="flex items-center gap-1.5">
@@ -262,46 +191,13 @@ export default function PackagesPage() {
                   </div>
 
                   {/* CTA Button */}
-                  <div
-                    className="mt-4 w-full flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-emerald-500 to-emerald-600 px-4 py-3.5 text-sm font-bold text-white shadow-lg shadow-emerald-500/20 transition-all hover:shadow-emerald-500/40 active:scale-[0.98] tap-scale btn-ripple"
-                  >
+                  <div className="mt-auto w-full flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-emerald-500 to-emerald-600 px-4 py-3.5 text-sm font-bold text-white shadow-lg shadow-emerald-500/20 transition-all hover:shadow-emerald-500/40 active:scale-[0.98] tap-scale btn-ripple">
                     <Phone className="h-4 w-4" />
                     Request a Call Back
                   </div>
                 </div>
               </Link>
             ))}
-          </div>
-
-          {/* Mobile Indicators */}
-          <div className="mt-4 flex items-center justify-center gap-2 sm:hidden">
-            {packages.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => {
-                  if (scrollRef.current) {
-                    const cardWidth = 280;
-                    scrollRef.current.scrollTo({
-                      left: i * cardWidth,
-                      behavior: 'smooth',
-                    });
-                  }
-                }}
-                className={`transition-all duration-300 rounded-full ${
-                  i === activeCard
-                    ? 'w-6 h-2 bg-emerald-500'
-                    : 'w-2 h-2 bg-slate-700'
-                }`}
-              />
-            ))}
-          </div>
-
-          {/* Swipe hint */}
-          <div className="mt-4 sm:mt-6 flex items-center justify-center gap-2 text-xs sm:text-sm text-slate-500">
-            <ChevronLeft className="h-4 w-4 swipe-hint sm:hidden" style={{ animationDirection: 'reverse' }} />
-            <span className="sm:hidden">Swipe to explore</span>
-            <span className="hidden sm:inline">Use arrows or scroll to explore more packages</span>
-            <ChevronRight className="h-4 w-4 swipe-hint sm:hidden" />
           </div>
         </div>
       </main>

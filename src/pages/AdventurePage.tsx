@@ -25,7 +25,7 @@ const adventures = [
     icon: Truck,
     title: 'Off Road',
     desc: 'Conquer rugged terrains of Ladakh and Zoji La pass in 4x4 vehicles.',
-    image: 'https://images.unsplash.com/photo-1533591917513-ab1a5a0014a0?w=800&q=80',
+    image: 'https://res.cloudinary.com/dveg0ai0n/image/upload/v1771576292/Jeep_Overland_h2qzjg.jpg',
     difficulty: 'Hard',
     duration: '2-5 Days',
     color: 'from-amber-500 to-orange-600',

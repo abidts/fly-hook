@@ -1,58 +1,39 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { Star, MapPin, Wifi, Utensils, Mountain, Car, Coffee, Building, Phone } from 'lucide-react';
 import { CallbackContext } from '../components/Layout';
+import { getHotels } from '../services/api';
 
-const hotels = [
-  {
-    name: 'The LaLiT Grand Palace Srinagar',
-    location: 'Gupkar Rd, Srinagar, Jammu and Kashmir 190001',
-    image: 'https://images.unsplash.com/photo-1611262588024-d12430a2aa8d?w=800&q=80',
-    rating: 4.9,
-    amenities: ['Wifi', 'Restaurant', 'Spa', 'Pool', 'Room Service'],
-    type: 'Luxury',
-    desc: 'Iconic 5-star luxury palace hotel on the banks of Dal Lake with world-class amenities.'
-  },
-  {
-    name: 'Welcomhotel by ITC Hotels, Pine N Peak, Pahalgam',
-    location: 'Aru Road, Near Amusement Park, Pahalgam, Jammu and Kashmir 192126',
-    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80',
-    rating: 4.8,
-    amenities: ['Mountain View', 'Restaurant', 'Spa', 'Adventure Desk'],
-    type: 'Luxury',
-    desc: 'Premium ITC hotel nestled in the pristine valleys of Pahalgam with breathtaking views.'
-  },
-  {
-    name: 'The Khyber Himalayan Resort & Spa',
-    location: 'Pinnacle Site, Near Gulmarg Gondola, Hotel Khyber Road, Forest Block, Gulmarg, Baramulla, Jammu and Kashmir 193403',
-    image: 'https://images.unsplash.com/photo-1571003706349-9db9d2b9e9b1?w=800&q=80',
-    rating: 4.9,
-    amenities: ['Ski Access', 'Restaurant', 'Spa', 'Bar', 'Heated Pool'],
-    type: 'Luxury',
-    desc: 'Ultra-luxury ski-in/ski-out resort with world-class spa and panoramic Himalayan views.'
-  },
-  {
-    name: 'Radisson Collection Hotel & Spa, Riverfront Srinagar',
-    location: 'Near Silk Factory Road, Jehlum Bund, Rajbagh, Srinagar, Jammu and Kashmir 190008',
-    image: 'https://images.unsplash.com/photo-1618821881168-1c2bccce6c54?w=800&q=80',
-    rating: 4.8,
-    amenities: ['River View', 'Restaurant', 'Spa', 'Wifi', 'Room Service'],
-    type: 'Luxury',
-    desc: 'Elegant riverfront luxury hotel with stunning Jhelum river views and premium amenities.'
-  },
-  {
-    name: 'TAJ DAL VIEW BY HOTEL TAJ',
-    location: 'Kralsangri, Brein, Srinagar, Jammu and Kashmir 191121',
-    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80',
-    rating: 4.7,
-    amenities: ['Lake View', 'Restaurant', 'Traditional Cuisine', 'Shikara Ride'],
-    type: 'Luxury',
-    desc: 'Taj hospitality with spectacular Dal Lake views and authentic Kashmiri experiences.'
-  }
-];
+type Hotel = {
+  name: string;
+  location: string;
+  image: string;
+  rating: number;
+  amenities: string[];
+  type: string;
+  desc: string;
+};
 
 export default function HotelsPage() {
   const onRequestCallback = useContext(CallbackContext) || (() => {});
   const [filter, setFilter] = useState('All');
+  const [hotels, setHotels] = useState<Hotel[]>([]);
+
+  useEffect(() => {
+    getHotels().then((data: any) => {
+      const normalized = (data || []).map((hotel: any) => ({
+        name: hotel.name,
+        location: hotel.location,
+        image: hotel.image,
+        rating: typeof hotel.rating === 'string' ? parseFloat(hotel.rating) : hotel.rating,
+        amenities: hotel.amenities || [],
+        type: hotel.type || (hotel.price && hotel.price > 10000 ? 'Luxury' : 'Premium'),
+        desc:
+          hotel.desc ||
+          `Enjoy a stay at ${hotel.name} with ${hotel.amenities?.slice(0, 2).join(', ') || 'modern comforts'}.`,
+      }));
+      setHotels(normalized);
+    });
+  }, []);
 
   const filteredHotels = hotels.filter(hotel => {
     const matchesType = filter === 'All' || hotel.type === filter;

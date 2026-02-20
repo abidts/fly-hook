@@ -76,7 +76,7 @@ export default function Services({ onRequestCallback }: Props) {
           </span>
           <h2 className="mt-4 font-playfair text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
             Everything for a
-            <span className="block gradient-text">Perfect J&K Trip</span>
+            <span className="block gradient-text">Perfect Kashmir Trip</span>
           </h2>
           <p className="mt-3 sm:mt-4 text-base sm:text-lg text-slate-400 px-4">
             From planning to execution, we handle every detail.

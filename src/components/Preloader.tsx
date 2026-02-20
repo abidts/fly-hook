@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Mountain, Sparkles } from 'lucide-react';
+import { Sparkles, Mountain } from 'lucide-react';
 
 export default function Preloader() {
   const [progress, setProgress] = useState(0);

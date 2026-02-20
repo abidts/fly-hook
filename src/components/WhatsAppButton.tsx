@@ -26,7 +26,7 @@ export default function WhatsAppButton() {
 
   const handleClick = () => {
     const message = encodeURIComponent(
-      'Hi! I\'m interested in J&K tour packages. Please share more details.'
+      'Hi! I\'m interested in Kashmir tour packages. Please share more details.'
     );
     window.location.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
   };

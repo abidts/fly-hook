@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Mountain, Menu, X, Phone, ChevronRight } from 'lucide-react';
+import { Menu, X, Phone, ChevronRight, Mountain } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface Props {

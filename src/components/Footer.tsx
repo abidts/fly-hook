@@ -1,4 +1,4 @@
-import { Mountain, Phone, Mail, MapPin, Heart, ArrowRight, Send } from 'lucide-react';
+import { Phone, Mail, MapPin, Heart, ArrowRight, Send, Mountain } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const quickLinks = [
@@ -31,7 +31,7 @@ export default function Footer() {
           
           <div className="relative flex flex-col lg:flex-row items-center justify-between gap-6">
             <div className="text-center lg:text-left">
-              <h3 className="font-playfair text-2xl sm:text-3xl font-bold text-white">Start Your J&K Journey</h3>
+              <h3 className="font-playfair text-2xl sm:text-3xl font-bold text-white">Start Your Kashmir Journey</h3>
               <p className="mt-2 text-sm sm:text-base text-emerald-100 max-w-md">
                 Subscribe for exclusive deals and travel tips.
               </p>
@@ -112,7 +112,7 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin className="h-4 w-4 text-emerald-400 mt-0.5 shrink-0" />
-                <span className="text-sm text-slate-400">Syedapora Humchi, Hazratbal, Srinagar, J&K 190006</span>
+                <span className="text-sm text-slate-400">Syedapora Humchi, Hazratbal, Srinagar, Kashmir 190006</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="h-4 w-4 text-emerald-400 shrink-0" />

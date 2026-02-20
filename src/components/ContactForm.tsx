@@ -10,12 +10,12 @@ const ContactForm: React.FC = () => {
         </div>
         
         <div className="p-2">
-          <iframe 
-            src="https://docs.google.com/forms/d/e/1FAIpQLSfgrT-BV8F8TkOmJdhy5xmELmz9Avr61rzOA0iMFHqu4mP0FQ/viewform?embedded=true"
-            width="100%" 
-            height="800" 
-            frameBorder="0" 
-            marginHeight={0} 
+          <iframe
+            src="https://docs.google.com/forms/d/e/1FAIpQLSejKmlWTIXyMOc-_reDhDOV61rSS6o92UrNz3kaB8bP7UpTtg/viewform?embedded=true"
+            width="100%"
+            height="800"
+            frameBorder="0"
+            marginHeight={0}
             marginWidth={0}
             title="Contact Form"
             className="rounded-lg"

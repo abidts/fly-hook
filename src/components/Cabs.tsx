@@ -10,7 +10,7 @@ const allCabs = [
   {
     name: 'Swift Dzire',
     type: 'Sedan',
-    image: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0637?w=600&q=80',
+    image: 'https://res.cloudinary.com/dveg0ai0n/image/upload/v1771496836/RedComm_-_Hire_Swift_Dzire_for_Tezpur_Kaziranga_Shillong_Cherrapunjee_Swift_Dzire_On_Rent_at_Low_Price_u4ryau.jpg',
     seats: '4',
     fuel: 'Petrol',
     transmission: 'Auto',
@@ -21,7 +21,7 @@ const allCabs = [
   {
     name: 'Chevrolet Tavera',
     type: 'MUV',
-    image: 'https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=600&q=80',
+    image: 'https://res.cloudinary.com/dveg0ai0n/image/upload/v1771522558/Upgraded_Chevrolet_Tavera_will_be_manufactured_at_Halol_Facility_yqgkwv.jpg',
     seats: '7',
     fuel: 'Diesel',
     transmission: 'Manual',
@@ -32,7 +32,7 @@ const allCabs = [
   {
     name: 'Toyota Etios',
     type: 'Sedan',
-    image: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0637?w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1550355291-bbee04a92027?w=800&q=80',
     seats: '4',
     fuel: 'Diesel',
     transmission: 'Manual',
@@ -43,7 +43,7 @@ const allCabs = [
   {
     name: 'Toyota Camry',
     type: 'Premium Sedan',
-    image: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0637?w=600&q=80',
+    image: 'https://res.cloudinary.com/dveg0ai0n/image/upload/v1771522294/toyota-camry_pb3ph6.jpg',
     seats: '4',
     fuel: 'Petrol/Hybrid',
     transmission: 'Auto',
@@ -54,7 +54,7 @@ const allCabs = [
   {
     name: 'Toyota Innova',
     type: 'MUV',
-    image: 'https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=900&q=80&auto=format&fit=crop',
+    image: 'https://res.cloudinary.com/dveg0ai0n/image/upload/v1771496833/__3_o9yb7c.jpg',
     seats: '7',
     fuel: 'Diesel',
     transmission: 'Auto',
@@ -65,7 +65,7 @@ const allCabs = [
   {
     name: 'Innova Crysta',
     type: 'MUV',
-    image: 'https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=600&q=80',
+    image: 'https://res.cloudinary.com/dveg0ai0n/image/upload/v1771496833/__3_o9yb7c.jpg',
     seats: '7',
     fuel: 'Diesel',
     transmission: 'Auto',
@@ -76,7 +76,7 @@ const allCabs = [
   {
     name: 'Tempo Traveller (14)',
     type: 'Mini Bus',
-    image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=900&q=80&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1715340614342-899407bed6dd?w=900&q=80&auto=format&fit=crop',
     seats: '14',
     fuel: 'Diesel',
     transmission: 'Manual',
@@ -87,7 +87,7 @@ const allCabs = [
   {
     name: 'Tempo Traveller (19)',
     type: 'Mini Bus',
-    image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=900&q=80&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1715340614342-899407bed6dd?w=900&q=80&auto=format&fit=crop',
     seats: '19',
     fuel: 'Diesel',
     transmission: 'Manual',
@@ -98,18 +98,18 @@ const allCabs = [
   {
     name: 'Tempo Traveller (27)',
     type: 'Mini Bus',
-    image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=900&q=80&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1715340614342-899407bed6dd?w=900&q=80&auto=format&fit=crop',
     seats: '27',
     fuel: 'Diesel',
     transmission: 'Manual',
-    rating: '4.5',
+    rating: '4.6',
     best: 'Large Groups',
     color: 'from-amber-500 to-orange-600',
   },
   {
     name: 'Mahindra Thar',
     type: '4x4 SUV',
-    image: 'https://images.unsplash.com/photo-1533591917513-ab1a5a0014a0?w=600&q=80',
+    image: 'https://res.cloudinary.com/dveg0ai0n/image/upload/v1771496833/_Thar_Transformed__Rugged_Elegance_with_Urban_Vibes__klyzyh.jpg',
     seats: '4',
     fuel: 'Diesel',
     transmission: '4WD',

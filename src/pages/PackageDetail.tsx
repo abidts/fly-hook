@@ -110,10 +110,10 @@ const packages: Record<string, PackageData> = {
     }
   },
   'jk-bliss': {
-    name: 'J&K Bliss',
+    name: 'Kashmir Bliss',
     slug: 'jk-bliss',
     duration: '4 Days / 3 Nights',
-    image: 'https://images.unsplash.com/photo-1597074866923-dc0589150bf6?w=1200&q=80',
+    image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200&q=80',
     destinations: ['Srinagar', 'Gulmarg', 'Pahalgam'],
     groupSize: '2-6',
     rating: '4.8',
@@ -153,7 +153,7 @@ const packages: Record<string, PackageData> = {
       }
     ],
     images: [
-      'https://images.unsplash.com/photo-1597074866923-dc0589150bf6?w=1200&q=80',
+      'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200&q=80',
       'https://images.unsplash.com/photo-1581791534721-e599df4417f6?w=800&q=80',
       'https://images.unsplash.com/photo-1600702653377-2bbad1049612?w=800&q=80',
       'https://images.unsplash.com/photo-1595815771614-ade9d652a65d?w=800&q=80'

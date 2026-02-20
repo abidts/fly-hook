@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { X, Phone, Mail, User, Send, CheckCircle } from 'lucide-react';
+import { X, Phone, Mail, User, Send, CheckCircle, MessageCircle } from 'lucide-react';
 
 interface Props {
   isOpen: boolean;
@@ -7,15 +7,24 @@ interface Props {
   subject?: string;
 }
 
-const GOOGLE_FORM_ACTION =
-  'https://docs.google.com/forms/d/e/1FAIpQLSdweNhOrnaNXdVOJpwAu1jO5jhBvi9t15SWrNW1tZhJFZA4AQ/formResponse';
+const FORM_SUBMIT_ACTION = 'https://formsubmit.co/ajax/flyhooktourtravel@gmail.com';
+const GOOGLE_FORM_ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLSejKmlWTIXyMOc-_reDhDOV61rSS6o92UrNz3kaB8bP7UpTtg/formResponse';
 
-// Google Form field IDs
-const FIELD_FULL_NAME = 'entry.370871562';
-const FIELD_EMAIL = 'entry.504321316';
-const FIELD_PHONE = 'entry.1367742169';
-// Optional subject mapping to message field in the Google Form
-const FIELD_MESSAGE = 'entry.1505399963';
+// Google Form field mapping - these need to match your actual Google Form fields
+// Your form has 3 fields in ALL CAPS: FULL NAME, EMAIL, PHONE NUMBER
+// To find correct field IDs:
+// 1. Open your Google Form in browser: https://docs.google.com/forms/d/e/1FAIpQLSejKmlWTIXyMOc-_reDhDOV61rSS6o92UrNz3kaB8bP7UpTtg/viewform
+// 2. Open browser console (F12)
+// 3. Paste and run the script from find-field-ids-simple.js
+// 4. Update the IDs below accordingly
+const GOOGLE_FORM_FIELDS = {
+  name: 'entry.2005620554',    // FULL NAME
+  email: 'entry.1045781291',   // EMAIL
+  phone: 'entry.1166974658'    // PHONE NUMBER
+};
+
+// FormSubmit expects plain keys, keep names explicit for clarity
+const WHATSAPP_NUMBER = '+916006500852';
 
 export default function CallbackPopup({ isOpen, onClose, subject }: Props) {
   const [submitted, setSubmitted] = useState(false);
@@ -25,6 +34,7 @@ export default function CallbackPopup({ isOpen, onClose, subject }: Props) {
     email: '',
     phone: '',
   });
+  const [error, setError] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -34,23 +44,48 @@ export default function CallbackPopup({ isOpen, onClose, subject }: Props) {
     e.preventDefault();
     if (submitting) return;
 
+    setError('');
     setSubmitting(true);
 
     try {
-      const data = new FormData();
-      data.append(FIELD_FULL_NAME, formData.name);
-      data.append(FIELD_EMAIL, formData.email);
-      data.append(FIELD_PHONE, formData.phone);
-      if (subject) data.append(FIELD_MESSAGE, subject);
-      data.append('fvv', '1');
-      data.append('partialResponse', '[]');
-      data.append('pageHistory', '0');
-      data.append('fbzx', `${Date.now()}`);
+      // Submit to FormSubmit for email notification
+      const emailRes = await fetch(FORM_SUBMIT_ACTION, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          subject: subject || 'Call back request',
+          _subject: 'Fly Hook – Call back request',
+          _template: 'table',
+          _captcha: 'false',
+        }),
+      });
+
+      if (!emailRes.ok) {
+        console.warn(`Email notification failed: ${emailRes.status}`);
+      }
+
+      // Submit to Google Forms using fetch with no-cors
+      // Mode 'no-cors' allows us to send the data even if Google doesn't return CORS headers
+      // We use URLSearchParams to ensure the data is sent as application/x-www-form-urlencoded
+      // Note: Google Form has only 3 fields (FULL NAME, EMAIL, PHONE) - no subject field
+      const googleFormParams = new URLSearchParams();
+      googleFormParams.append(GOOGLE_FORM_FIELDS.name, formData.name.trim());
+      googleFormParams.append(GOOGLE_FORM_FIELDS.email, formData.email.trim());
+      googleFormParams.append(GOOGLE_FORM_FIELDS.phone, formData.phone.trim());
 
       await fetch(GOOGLE_FORM_ACTION, {
         method: 'POST',
         mode: 'no-cors',
-        body: data,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: googleFormParams.toString(),
       });
 
       setSubmitted(true);
@@ -60,8 +95,8 @@ export default function CallbackPopup({ isOpen, onClose, subject }: Props) {
         onClose();
       }, 2200);
     } catch (err) {
-      // Silently fail but close submitting state so the user can retry
       console.error('Failed to submit callback form', err);
+      setError('Something went wrong. Please try again or use WhatsApp.');
     } finally {
       setSubmitting(false);
     }
@@ -163,6 +198,29 @@ export default function CallbackPopup({ isOpen, onClose, subject }: Props) {
                 <Send className="h-5 w-5" />
                 {submitting ? 'Sending...' : 'Request Call Back'}
               </button>
+
+              {error && <p className="text-sm text-amber-300" role="alert">{error}</p>}
+
+              <div className="relative py-2">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-slate-800" />
+                </div>
+                <div className="relative flex justify-center">
+                  <span className="bg-slate-900 px-3 text-xs text-slate-500">or</span>
+                </div>
+              </div>
+
+              <a
+                href={`https://wa.me/${WHATSAPP_NUMBER.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(
+                  subject ? `Hi Fly Hook, I want to chat about ${subject}.` : 'Hi Fly Hook, I want to plan my trip.'
+                )}`}
+                target="_blank"
+                rel="noreferrer"
+                className="w-full flex items-center justify-center gap-2 rounded-xl border border-emerald-500/40 bg-emerald-500/10 py-3.5 text-base font-semibold text-emerald-300 transition-all hover:bg-emerald-500/20 hover:border-emerald-400 active:scale-[0.98]"
+              >
+                <MessageCircle className="h-5 w-5" />
+                Chat on WhatsApp
+              </a>
             </form>
           </>
         )}

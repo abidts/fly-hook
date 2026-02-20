@@ -17,7 +17,7 @@ const destinations: Record<string, {
   gulmarg: {
     name: 'Gulmarg',
     tagline: 'Meadow of Flowers',
-    image: 'https://images.unsplash.com/photo-1581791534721-e599df4417f6?w=1200&q=80',
+    image: 'https://images.unsplash.com/photo-1683434576805-a4f85ea47bbf?auto=format&fit=crop&w=1200&q=80',
     desc: 'World-class skiing destination and the highest gondola ride in Asia.',
     rating: '4.9',
     highlight: 'Ski Paradise',
@@ -26,7 +26,7 @@ const destinations: Record<string, {
     duration: '3-4 Days',
     activities: ['Skiing & Snowboarding', 'Gondola Ride (Phase 1 & 2)', 'Trekking to Alpather Lake', 'Golfing at the highest green golf course', 'Sleigh rides in winter'],
     gallery: [
-      'https://images.unsplash.com/photo-1581791534721-e599df4417f6?w=800&q=80',
+      'https://images.unsplash.com/photo-1707045189683-4cced7a3a6b3?auto=format&w=1200&q=80',
       'https://images.unsplash.com/photo-1626017088971-6a2a5f0d8c97?w=800&q=80',
       'https://images.unsplash.com/photo-1626017088971-6a2a5f0d8c97?w=800&q=80',
     ],
@@ -34,7 +34,7 @@ const destinations: Record<string, {
   pahalgam: {
     name: 'Pahalgam',
     tagline: 'Valley of Shepherds',
-    image: 'https://images.unsplash.com/photo-1600702653377-2bbad1049612?w=1200&q=80',
+    image: 'https://images.unsplash.com/photo-1564509180796-129e4f4f6de9?auto=format&fit=crop&w=1200&q=80',
     desc: 'A pristine valley with lush meadows, rivers, and the starting point of Amarnath Yatra.',
     rating: '4.8',
     highlight: 'River Valley',
@@ -85,7 +85,7 @@ const destinations: Record<string, {
   'leh-ladakh': {
     name: 'Leh Ladakh',
     tagline: 'Land of High Passes',
-    image: 'https://images.unsplash.com/photo-1537126694932-c0f39026528e?w=1200&q=80',
+    image: 'https://images.unsplash.com/photo-1632979720170-9a1ab1b103d3?auto=format&fit=crop&w=1200&q=80',
     desc: 'Breathtaking moonscapes, ancient monasteries, and the highest motorable passes.',
     rating: '5.0',
     highlight: 'Adventure Hub',
@@ -114,6 +114,150 @@ const destinations: Record<string, {
       'https://images.unsplash.com/photo-1595815771614-ade9d652a65d?w=800&q=80',
       'https://images.unsplash.com/photo-1597074866923-dc0589150bf6?w=800&q=80',
       'https://images.unsplash.com/photo-1600702653377-2bbad1049612?w=800&q=80',
+    ],
+  },
+  'manasbal-lake': {
+    name: 'Manasbal Lake',
+    tagline: 'Lotus Lake of Kashmir',
+    image: 'https://images.unsplash.com/photo-1505761671935-60b3a7427bad?auto=format&fit=crop&w=1200&q=80',
+    desc: 'Serene freshwater lake famed for lotus blooms and mirrored mountain reflections.',
+    rating: '4.7',
+    highlight: 'Hidden Gem',
+    fullDesc:
+      "Manasbal Lake, often called the 'Supreme Gem of Kashmir Lakes', sits north of Srinagar near Safapora. Its clear waters mirror the surrounding Zabarwan hills and apple orchards, while lotus flowers carpet the surface in summer. A calm alternative to Dal, it’s perfect for picnics, birdwatching, and quiet Shikara rides. The nearby Mughal-era Jharokha (Jaroka Bagh) and ancient ruins of Daroga Bagh add heritage charm.",
+    bestTime: 'May to October',
+    duration: '1 Day',
+    activities: [
+      'Shikara ride among lotus blooms',
+      'Birdwatching along the banks',
+      'Picnic by the Mughal Jharokha garden',
+      'Photography at sunrise and sunset',
+      'Combine with Wullar Lake or Nagin Valley visit',
+    ],
+    gallery: [
+      'https://images.unsplash.com/photo-1505761671935-60b3a7427bad?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80',
+    ],
+  },
+  'sinthon-top': {
+    name: 'Sinthon Top',
+    tagline: '360° Panoramic Pass',
+    image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80',
+    desc: 'High-altitude mountain pass linking Kashmir and Kishtwar with sweeping Himalayan views.',
+    rating: '4.6',
+    highlight: 'Scenic Drive',
+    fullDesc:
+      'Sinthon Top (also spelled Sinthan) sits around 12,500 ft on the Anantnag–Kishtwar road. The pass offers uninterrupted 360° views of Pir Panjal snowfields, hairpin bends popular with road-trippers, and meadows that stay snow-dusted much of the year. It is less commercialized, making it ideal for photography, quick hikes, and serene picnics above the clouds.',
+    bestTime: 'June to September (road accessible)',
+    duration: 'Day Trip',
+    activities: [
+      'Scenic drive with hairpin bends',
+      'Snow play and short ridge walks',
+      'Photography at the viewpoint deck',
+      'Picnic on the meadows (carry trash back)',
+      'Combine with Daksum and Kokernag springs',
+    ],
+    gallery: [
+      'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1505761671935-60b3a7427bad?auto=format&fit=crop&w=800&q=80',
+    ],
+  },
+  doodhpathri: {
+    name: 'Doodhpathri',
+    tagline: 'Valley of Milk',
+    image: 'https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1200&q=80',
+    desc: 'Alpine meadows with milky-white streams, pine forests, and crowd-free picnic spots.',
+    rating: '4.7',
+    highlight: 'Alpine Meadow',
+    fullDesc:
+      'Doodhpathri, about 45 km from Srinagar, is a lush bowl-shaped meadow carpeted with wildflowers and dense pines. The Shaliganga stream froths white against smooth boulders—giving the valley its “milk” name. Cooler and less commercial than Gulmarg, it’s great for day picnics, pony rides, and slow walks along the river.',
+    bestTime: 'May to October',
+    duration: 'Day Trip',
+    activities: [
+      'Riverside picnic by Shaliganga stream',
+      'Pony ride across the meadows',
+      'Short forest walks and photography',
+      'Tea and kulcha at local dhabas',
+      'Snow play in early spring/late autumn',
+    ],
+    gallery: [
+      'https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80',
+    ],
+  },
+  'drung-fall': {
+    name: 'Drung Waterfall',
+    tagline: 'Frozen Cascade',
+    image: 'https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=1200&q=80',
+    desc: 'Dramatic waterfall near Tangmarg that freezes into icicles in winter.',
+    rating: '4.6',
+    highlight: 'Winter Marvel',
+    fullDesc:
+      'Drung (Dron) Waterfall sits close to Tangmarg on the way to Gulmarg. In peak winter the cascade turns into a wall of icicles, while summer reveals a thundering flow surrounded by pine forests. It is an easy stop from the Srinagar–Gulmarg highway and pairs well with nearby trout farms and local dhabas.',
+    bestTime: 'December to February for frozen view; May to September for flow',
+    duration: 'Half Day',
+    activities: [
+      'View the frozen waterfall and icicles',
+      'Short riverside walk and photography',
+      'Tea and kahwa at roadside stalls',
+      'Combine with Gulmarg or Tangmarg trout farm',
+      'Snow play in winter months',
+    ],
+    gallery: [
+      'https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=800&q=80',
+    ],
+  },
+  'mughal-gardens': {
+    name: 'Mughal Gardens (Srinagar)',
+    tagline: 'Nishat • Shalimar • Harwan • Pari Mahal • Cheshma Shahi',
+    image: 'https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1200&q=80',
+    desc: 'Terraced lawns, fountains, and Chinar-lined vistas along Dal Lake.',
+    rating: '4.8',
+    highlight: 'Heritage Gardens',
+    fullDesc:
+      'Srinagar’s Mughal garden circuit strings together Nishat Bagh’s twelve terraces, the royal pavilions of Shalimar, the hillside amphitheater of Harwan, the hilltop viewpoint of Pari Mahal, and the freshwater spring of Cheshma Shahi. Built by the Mughals for leisure and lake views, these gardens showcase Persian-inspired layouts, cascading water channels, and grand Chinars.',
+    bestTime: 'April to October (Chinar colors peak in autumn)',
+    duration: '1 Day',
+    activities: [
+      'Sunset stroll in Nishat and Shalimar terraces',
+      'Panoramic Dal Lake view from Pari Mahal',
+      'Spring water tasting at Cheshma Shahi',
+      'Picnic on Harwan lawns',
+      'Photography of Chinar foliage in autumn',
+    ],
+    gallery: [
+      'https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=800&q=80',
+    ],
+  },
+  amarnath: {
+    name: 'Amarnath Cave',
+    tagline: 'Sacred Himalayan Yatra',
+    image: 'https://res.cloudinary.com/dveg0ai0n/image/upload/v1771496839/Journey_to_Shri_Amarnath_Cave_cxxqte.jpg',
+    desc: 'High-altitude pilgrimage to the naturally formed ice lingam in a Himalayan cave.',
+    rating: '4.9',
+    highlight: 'Pilgrimage',
+    fullDesc:
+      'The Amarnath Yatra leads devotees to a Himalayan cave shrine where an ice stalagmite is revered as a Shiva lingam. Routes typically start from Pahalgam (via Chandanwari and Sheshnag) or Baltal for a shorter but steeper ascent. The trek offers dramatic glaciers, alpine lakes, and spiritual camaraderie, operating seasonally under strict permits and weather advisories.',
+    bestTime: 'Yatra window (typically July–August, subject to official schedule)',
+    duration: '3–5 Days (trek)',
+    activities: [
+      'Pilgrimage trek via Pahalgam or Baltal',
+      'Helicopter-assisted darshan (subject to permits)',
+      'Camping at Sheshnag or Panchtarni',
+      'Glacier and alpine lake views',
+      'Local langar seva and community kitchens',
+    ],
+    gallery: [
+      'https://res.cloudinary.com/dveg0ai0n/image/upload/v1771496839/Journey_to_Shri_Amarnath_Cave_cxxqte.jpg',
+      'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=800&q=80',
     ],
   },
 };
@@ -222,27 +366,6 @@ export default function DestinationDetail() {
                 >
                   <div className="h-2 w-2 rounded-full bg-emerald-400" />
                   <span className="text-slate-200">{activity}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Gallery */}
-          <div className="mb-12">
-            <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-white mb-6">
-              Photo Gallery
-            </h2>
-            <div className="grid sm:grid-cols-3 gap-4">
-              {destination.gallery.map((img, idx) => (
-                <div
-                  key={idx}
-                  className="relative aspect-square rounded-2xl overflow-hidden border border-slate-800"
-                >
-                  <img
-                    src={img}
-                    alt={`${destination.name} ${idx + 1}`}
-                    className="h-full w-full object-cover transition-transform duration-500 hover:scale-110"
-                  />
                 </div>
               ))}
             </div>
