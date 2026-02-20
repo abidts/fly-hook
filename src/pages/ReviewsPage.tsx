@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Star, ChevronLeft, ChevronRight, Quote, Sparkles } from 'lucide-react';
+import { Star, ChevronLeft, ChevronRight, Quote, Sparkles, ThumbsUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const reviews = [
@@ -191,6 +191,34 @@ export default function ReviewsPage() {
                 <div className="text-xs sm:text-sm text-slate-400 mt-1">{stat.label}</div>
               </div>
             ))}
+          </div>
+
+          {/* Write Review CTA */}
+          <div className="mt-10 sm:mt-16 max-w-2xl mx-auto">
+            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-red-500 to-orange-500 p-6 sm:p-10 text-center">
+              <div className="absolute top-0 right-0 h-32 w-32 rounded-full bg-white/10 blur-3xl" />
+              <div className="absolute bottom-0 left-0 h-32 w-32 rounded-full bg-white/5 blur-3xl" />
+              
+              <div className="relative">
+                <div className="flex items-center justify-center gap-2 mb-4">
+                  <ThumbsUp className="h-8 w-8 text-white" />
+                </div>
+                <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-white">
+                  Had a Great Experience?
+                </h2>
+                <p className="mt-3 text-sm sm:text-base text-white/90 max-w-md mx-auto">
+                  Share your journey with us and help fellow travelers discover the beauty of Kashmir
+                </p>
+                <a
+                  href="https://g.page/r/CXsHH8ynikKNEAI/review"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-8 py-3.5 font-semibold text-red-600 transition-all hover:scale-105 hover:shadow-lg"
+                >
+                  Write a Review on Google
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </main>

@@ -1,6 +1,7 @@
-import { useRef } from 'react';
-import { Mountain, Flame, Truck, Tent, Compass, Phone, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { Mountain, Flame, Truck, Tent, Compass, Phone, Sparkles } from 'lucide-react';
+import { CallbackContext } from '../components/Layout';
+import WhatsAppCTA from '../components/WhatsAppCTA';
 
 const adventures = [
   {
@@ -51,17 +52,7 @@ const adventures = [
 ];
 
 export default function AdventurePage() {
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  const scroll = (direction: 'left' | 'right') => {
-    if (scrollRef.current) {
-      const cardWidth = scrollRef.current.clientWidth < 640 ? 260 : 320;
-      scrollRef.current.scrollBy({
-        left: direction === 'left' ? -cardWidth : cardWidth,
-        behavior: 'smooth',
-      });
-    }
-  };
+  const onRequestCallback = useContext(CallbackContext) || (() => {});
 
   return (
     <div className="min-h-screen bg-slate-950 text-white">
@@ -82,31 +73,12 @@ export default function AdventurePage() {
             </p>
           </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden sm:flex items-center justify-end gap-3 mt-8">
-            <button
-              onClick={() => scroll('left')}
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 border border-slate-700 text-white transition-all hover:bg-rose-500 hover:border-rose-500 tap-scale"
-            >
-              <ChevronLeft className="h-5 w-5" />
-            </button>
-            <button
-              onClick={() => scroll('right')}
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 border border-slate-700 text-white transition-all hover:bg-rose-500 hover:border-rose-500 tap-scale"
-            >
-              <ChevronRight className="h-5 w-5" />
-            </button>
-          </div>
-
-          {/* Adventures Horizontal Scroll */}
-          <div
-            ref={scrollRef}
-            className="mt-6 sm:mt-8 flex gap-4 sm:gap-6 overflow-x-auto no-scrollbar pb-4 -mx-4 px-4 snap-x snap-mandatory"
-          >
+          {/* Adventures Grid */}
+          <div className="mt-6 sm:mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {adventures.map((adv) => (
               <div
                 key={adv.title}
-                className="group relative flex-shrink-0 w-[260px] sm:w-[300px] overflow-hidden rounded-3xl border border-slate-800 transition-all duration-500 hover:border-slate-700 snap-start tap-scale"
+                className="group relative overflow-hidden rounded-3xl border border-slate-800 transition-all duration-500 hover:border-slate-700 tap-scale"
               >
                 {/* Image */}
                 <div className="relative h-64 sm:h-80 overflow-hidden">
@@ -136,26 +108,29 @@ export default function AdventurePage() {
 
                     <h3 className="text-xl sm:text-2xl font-bold text-white font-playfair">{adv.title}</h3>
                     <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm text-slate-300 leading-relaxed line-clamp-2">{adv.desc}</p>
-
-                    {/* CTA Button */}
-                    <button
-                      className="mt-3 sm:mt-4 flex items-center justify-center gap-2 w-full rounded-xl bg-emerald-500/10 border border-emerald-500/30 px-4 py-2.5 text-xs sm:text-sm font-medium text-emerald-400 transition-all hover:bg-emerald-500 hover:text-white hover:border-emerald-500 tap-scale"
-                    >
-                      <Phone className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                      Request Call Back
-                    </button>
                   </div>
+                </div>
+
+                {/* CTA Button - Opens Popup */}
+                <div className="p-4 sm:p-5 pt-0">
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      onRequestCallback(`${adv.title} Adventure`);
+                    }}
+                    className="mt-3 sm:mt-4 flex items-center justify-center gap-2 w-full rounded-xl bg-emerald-500/10 border border-emerald-500/30 px-4 py-2.5 text-xs sm:text-sm font-medium text-emerald-400 transition-all hover:bg-emerald-500 hover:text-white hover:border-emerald-500 tap-scale"
+                  >
+                    <Phone className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                    Request Call Back
+                  </button>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Mobile swipe hint */}
-          <div className="mt-4 flex items-center justify-center gap-2 text-xs text-slate-500 sm:hidden">
-            <ChevronLeft className="h-4 w-4 swipe-hint" style={{ animationDirection: 'reverse' }} />
-            <span>Swipe to explore adventures</span>
-            <ChevronRight className="h-4 w-4 swipe-hint" />
-          </div>
+          {/* WhatsApp CTA */}
+          <WhatsAppCTA message="Latest Adventure Activities & Offbeat Experiences" section="adventure" />
         </div>
       </main>
     </div>

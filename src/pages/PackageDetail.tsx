@@ -1,21 +1,21 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { 
-  ArrowLeft, 
-  MapPin, 
-  Star, 
-  Clock, 
-  Users, 
-  Calendar, 
-  Phone, 
-  Check, 
+import { CallbackContext } from '../components/Layout';
+import {
+  ArrowLeft,
+  MapPin,
+  Star,
+  Clock,
+  Users,
+  Calendar,
+  Phone,
+  Check,
   X,
   Sparkles,
   Mountain,
   Utensils,
   Bed,
-  Car,
-  Camera
+  Car
 } from 'lucide-react';
 
 interface ItineraryDay {
@@ -578,18 +578,9 @@ const packages: Record<string, PackageData> = {
 export default function PackageDetail() {
   const { packageName } = useParams<{ packageName: string }>();
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState<'overview' | 'itinerary' | 'inclusions' | 'gallery'>('overview');
-  const [showBookingForm, setShowBookingForm] = useState(false);
+  const onRequestCallback = useContext(CallbackContext) || (() => {});
+  const [activeTab, setActiveTab] = useState<'overview' | 'itinerary' | 'inclusions'>('overview');
   const [packageData, setPackageData] = useState<PackageData | null>(null);
-  const [activeImageIndex, setActiveImageIndex] = useState(0);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    date: '',
-    guests: 2,
-    message: ''
-  });
 
   useEffect(() => {
     if (packageName) {
@@ -599,21 +590,6 @@ export default function PackageDetail() {
       }
     }
   }, [packageName]);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Booking submitted:', formData);
-    alert('Thank you for your booking request! We will contact you shortly.');
-    setShowBookingForm(false);
-  };
 
   if (!packageData) {
     return (
@@ -630,14 +606,12 @@ export default function PackageDetail() {
     );
   }
 
-  const discountedPrice = packageData.price.perPerson * (1 - packageData.price.discount / 100);
-
   return (
     <div className="min-h-screen bg-slate-950 text-white">
       {/* Hero Section */}
       <div className="relative h-[50vh] sm:h-[60vh] overflow-hidden">
         <img
-          src={packageData.images[activeImageIndex]}
+          src={packageData.image}
           alt={packageData.name}
           className="h-full w-full object-cover"
         />
@@ -686,25 +660,6 @@ export default function PackageDetail() {
         </div>
       </div>
 
-      {/* Image Thumbnails */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-10">
-        <div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar">
-          {packageData.images.map((img, index) => (
-            <button
-              key={index}
-              onClick={() => setActiveImageIndex(index)}
-              className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
-                activeImageIndex === index 
-                  ? 'border-emerald-500 ring-2 ring-emerald-500/30' 
-                  : 'border-slate-700 opacity-70 hover:opacity-100'
-              }`}
-            >
-              <img src={img} alt={`${packageData.name} ${index + 1}`} className="h-full w-full object-cover" />
-            </button>
-          ))}
-        </div>
-      </div>
-
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Content */}
@@ -714,8 +669,7 @@ export default function PackageDetail() {
               {[
                 { id: 'overview', label: 'Overview', icon: Sparkles },
                 { id: 'itinerary', label: 'Itinerary', icon: Calendar },
-                { id: 'inclusions', label: 'Inclusions', icon: Check },
-                { id: 'gallery', label: 'Gallery', icon: Camera }
+                { id: 'inclusions', label: 'Inclusions', icon: Check }
               ].map(({ id, label, icon: Icon }) => (
                 <button
                   key={id}
@@ -856,48 +810,17 @@ export default function PackageDetail() {
                   </div>
                 </div>
               )}
-
-              {activeTab === 'gallery' && (
-                <div>
-                  <h3 className="font-playfair text-2xl font-bold text-white mb-6 flex items-center gap-2">
-                    <Camera className="h-5 w-5 text-sky-400" />
-                    Photo Gallery
-                  </h3>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                    {packageData.images.map((img, index: number) => (
-                      <div
-                        key={index}
-                        className="relative aspect-square rounded-xl overflow-hidden border border-slate-800 group cursor-pointer"
-                        onClick={() => setActiveImageIndex(index)}
-                      >
-                        <img
-                          src={img}
-                          alt={`${packageData.name} ${index + 1}`}
-                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
             </div>
           </div>
 
           {/* Sidebar */}
           <div className="lg:col-span-1">
             <div className="sticky top-24 space-y-6">
-              {/* Price Card */}
+              {/* Request Call Back Card */}
               <div className="bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 rounded-2xl p-6">
-                <div className="mb-4">
-                  <div className="flex items-baseline gap-2 mb-1">
-                    <span className="text-3xl font-bold text-white">₹{discountedPrice.toLocaleString()}</span>
-                    <span className="text-slate-500 line-through">₹{packageData.price.perPerson.toLocaleString()}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-emerald-400 font-semibold">{packageData.price.discount}% OFF</span>
-                    <span className="text-slate-400 text-sm">per person</span>
-                  </div>
+                <div className="mb-6">
+                  <h3 className="font-playfair text-xl font-bold text-white mb-2">Interested in this Package?</h3>
+                  <p className="text-slate-400 text-sm">Get a customized quote and all your questions answered</p>
                 </div>
 
                 <div className="space-y-3 mb-6 py-4 border-t border-b border-slate-700">
@@ -925,18 +848,18 @@ export default function PackageDetail() {
                 </div>
 
                 <button
-                  onClick={() => setShowBookingForm(true)}
+                  onClick={() => onRequestCallback(`${packageData.name} Package`)}
                   className="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-semibold py-3.5 px-4 rounded-xl hover:shadow-lg hover:shadow-emerald-500/30 transition-all tap-scale mb-3"
                 >
-                  Book Now
+                  Request a Call Back
                 </button>
 
                 <a
-                  href="tel:+919999999999"
+                  href="tel:+916006500852"
                   className="flex items-center justify-center gap-2 w-full py-3 border border-slate-700 rounded-xl text-slate-300 hover:bg-slate-800 transition-all tap-scale"
                 >
                   <Phone className="h-4 w-4" />
-                  +91 99999 99999
+                  +91 60065 00852
                 </a>
               </div>
 
@@ -977,121 +900,6 @@ export default function PackageDetail() {
           </div>
         </div>
       </main>
-
-      {/* Booking Form Modal */}
-      {showBookingForm && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-slate-900 border border-slate-700 rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto">
-            <div className="p-6">
-              <div className="flex justify-between items-center mb-6">
-                <h3 className="font-playfair text-xl font-bold text-white">Book {packageData.name}</h3>
-                <button
-                  onClick={() => setShowBookingForm(false)}
-                  className="text-slate-400 hover:text-white transition-colors"
-                >
-                  <X className="h-6 w-6" />
-                </button>
-              </div>
-
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-slate-300 mb-1">Full Name</label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all"
-                    placeholder="Your full name"
-                  />
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-1">Email</label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      required
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all"
-                      placeholder="your@email.com"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-slate-300 mb-1">Phone</label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      required
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all"
-                      placeholder="+91 "
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="date" className="block text-sm font-medium text-slate-300 mb-1">Travel Date</label>
-                    <input
-                      type="date"
-                      id="date"
-                      name="date"
-                      required
-                      value={formData.date}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="guests" className="block text-sm font-medium text-slate-300 mb-1">Guests</label>
-                    <select
-                      id="guests"
-                      name="guests"
-                      value={formData.guests}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all"
-                    >
-                      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => (
-                        <option key={num} value={num}>{num} {num === 1 ? 'Person' : 'People'}</option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-slate-300 mb-1">Special Requests</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={3}
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all resize-none"
-                    placeholder="Any special requirements or preferences?"
-                  ></textarea>
-                </div>
-
-                <div className="pt-2">
-                  <button
-                    type="submit"
-                    className="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-semibold py-3.5 px-4 rounded-xl hover:shadow-lg hover:shadow-emerald-500/30 transition-all tap-scale"
-                  >
-                    Send Booking Request
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

@@ -35,8 +35,8 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <p className="text-sm text-slate-500">Call Us</p>
-                  <a href="tel:+917006277077" className="text-white font-medium hover:text-emerald-400 transition-colors">
-                    +91 70062 77077
+                  <a href="tel:+916006500852" className="text-white font-medium hover:text-emerald-400 transition-colors">
+                    +91 60065 00852
                   </a>
                 </div>
               </div>

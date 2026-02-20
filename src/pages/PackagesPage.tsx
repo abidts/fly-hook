@@ -1,5 +1,8 @@
 import { Clock, MapPin, Users, Star, Check, Phone, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { CallbackContext } from '../components/Layout';
+import WhatsAppCTA from '../components/WhatsAppCTA';
 
 const packages = [
   {
@@ -96,6 +99,8 @@ const packages = [
 ];
 
 export default function PackagesPage() {
+  const onRequestCallback = useContext(CallbackContext) || (() => {});
+
   return (
     <div className="min-h-screen bg-slate-950 text-white">
       <main className="pt-16 pb-16 sm:py-24">
@@ -120,36 +125,37 @@ export default function PackagesPage() {
           {/* Grid */}
           <div className="mt-8 sm:mt-12 grid gap-5 sm:gap-6 lg:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {packages.map((pkg) => (
-              <Link
+              <div
                 key={pkg.name}
-                to={`/packages/${pkg.slug}`}
                 className="group relative overflow-hidden rounded-3xl bg-slate-900/80 border border-slate-800 transition-all duration-500 hover:border-slate-700 tap-scale shadow-lg shadow-black/10 hover:shadow-emerald-500/10"
               >
-                {/* Image */}
-                <div className="relative h-44 sm:h-52 lg:h-56 overflow-hidden">
-                  <img
-                    src={pkg.image}
-                    alt={pkg.name}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/30 to-transparent" />
+                {/* Image with Link to Details Page */}
+                <Link to={`/packages/${pkg.slug}`} className="block">
+                  <div className="relative h-44 sm:h-52 lg:h-56 overflow-hidden">
+                    <img
+                      src={pkg.image}
+                      alt={pkg.name}
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/30 to-transparent" />
 
-                  {/* Tag */}
-                  <span className={`absolute top-3 left-3 sm:top-4 sm:left-4 rounded-full bg-gradient-to-r ${pkg.tagColor} px-3 py-1 text-xs font-bold text-white shadow-lg`}>
-                    {pkg.tag}
-                  </span>
+                    {/* Tag */}
+                    <span className={`absolute top-3 left-3 sm:top-4 sm:left-4 rounded-full bg-gradient-to-r ${pkg.tagColor} px-3 py-1 text-xs font-bold text-white shadow-lg`}>
+                      {pkg.tag}
+                    </span>
 
-                  {/* Rating */}
-                  <div className="absolute top-3 right-3 sm:top-4 sm:right-4 flex items-center gap-1 rounded-full bg-black/50 backdrop-blur-sm px-2.5 py-1">
-                    <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
-                    <span className="text-xs font-medium text-white">{pkg.rating}</span>
+                    {/* Rating */}
+                    <div className="absolute top-3 right-3 sm:top-4 sm:right-4 flex items-center gap-1 rounded-full bg-black/50 backdrop-blur-sm px-2.5 py-1">
+                      <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
+                      <span className="text-xs font-medium text-white">{pkg.rating}</span>
+                    </div>
+
+                    {/* Package name */}
+                    <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 right-3 sm:right-4">
+                      <h3 className="text-xl sm:text-2xl font-bold text-white font-playfair">{pkg.name}</h3>
+                    </div>
                   </div>
-
-                  {/* Package name */}
-                  <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 right-3 sm:right-4">
-                    <h3 className="text-xl sm:text-2xl font-bold text-white font-playfair">{pkg.name}</h3>
-                  </div>
-                </div>
+                </Link>
 
                 {/* Details */}
                 <div className="p-4 sm:p-5 flex flex-col gap-3">
@@ -190,15 +196,25 @@ export default function PackagesPage() {
                     ))}
                   </div>
 
-                  {/* CTA Button */}
-                  <div className="mt-auto w-full flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-emerald-500 to-emerald-600 px-4 py-3.5 text-sm font-bold text-white shadow-lg shadow-emerald-500/20 transition-all hover:shadow-emerald-500/40 active:scale-[0.98] tap-scale btn-ripple">
+                  {/* CTA Button - Opens Popup */}
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      onRequestCallback(`${pkg.name} Package`);
+                    }}
+                    className="mt-auto w-full flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-emerald-500 to-emerald-600 px-4 py-3.5 text-sm font-bold text-white shadow-lg shadow-emerald-500/20 transition-all hover:shadow-emerald-500/40 active:scale-[0.98] tap-scale btn-ripple"
+                  >
                     <Phone className="h-4 w-4" />
                     Request a Call Back
-                  </div>
+                  </button>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
+
+          {/* WhatsApp CTA */}
+          <WhatsAppCTA message="Latest Tour Packages & Custom Itineraries" section="packages" />
         </div>
       </main>
     </div>

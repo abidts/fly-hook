@@ -14,7 +14,6 @@ const navLinks = [
   { label: 'Hotels', href: '/hotels' },
   { label: 'Adventure', href: '/adventure' },
   { label: 'Gallery', href: '/gallery' },
-  { label: 'Reviews', href: '/reviews' },
   { label: 'Contact', href: '/contact' },
 ];
 

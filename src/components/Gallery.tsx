@@ -13,7 +13,8 @@ const images = [
   { src: 'https://images.unsplash.com/photo-1683434576805-a4f85ea47bbf?w=800&q=80', title: 'Mountain Camping', category: 'Adventure' },
   { src: 'https://images.unsplash.com/photo-1722641277067-a7fba0ad1a59?w=800&q=80', title: 'J&K Campfire', category: 'Adventure' },
   { src: 'https://images.unsplash.com/photo-1704796531503-2ebd32bbaa8c?w=800&q=80', title: 'Snowy Peaks', category: 'Mountains' },
-  { src: 'https://images.unsplash.com/photo-1642681490734-cc3d694e011a?w=800&q=80', title: 'Heritage Kashmir', category: 'Culture' },
+  { src: 'https://res.cloudinary.com/dveg0ai0n/image/upload/v1771610703/Screenshot_2026-02-20_at_11.33.40_PM_gd5eyt.png', title: 'Luxury Travel Experience', category: 'Adventure' },
+
 ];
 
 const categories = ['All', 'Lakes', 'Mountains', 'Valleys', 'Adventure'];

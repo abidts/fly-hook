@@ -154,6 +154,11 @@ body {
   50% { transform: rotate(3deg); }
 }
 
+@keyframes bounce-x {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(8px); }
+}
+
 @keyframes glow-pulse {
   0%, 100% { 
     box-shadow: 0 0 5px rgba(16,185,129,0.5), 0 0 20px rgba(16,185,129,0.3), 0 0 40px rgba(16,185,129,0.1);
@@ -192,6 +197,7 @@ body {
 .animate-heartbeat { animation: heartbeat 1s ease-in-out infinite; }
 .animate-wiggle { animation: wiggle 0.5s ease-in-out; }
 .animate-glow-pulse { animation: glow-pulse 2s ease-in-out infinite; }
+.animate-bounce-x { animation: bounce-x 1s ease-in-out infinite; }
 
 .delay-75 { animation-delay: 0.075s; }
 .delay-100 { animation-delay: 0.1s; }

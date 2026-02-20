@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from 'react';
 import { Star, MapPin, Wifi, Utensils, Mountain, Car, Coffee, Building, Phone } from 'lucide-react';
 import { CallbackContext } from '../components/Layout';
 import { getHotels } from '../services/api';
+import WhatsAppCTA from '../components/WhatsAppCTA';
 
 type Hotel = {
   name: string;
@@ -127,8 +128,8 @@ export default function HotelsPage() {
                   {/* Amenities */}
                   <div className="mt-4 flex flex-wrap gap-2">
                     {hotel.amenities.map(amenity => (
-                      <span 
-                        key={amenity} 
+                      <span
+                        key={amenity}
                         className="flex items-center gap-1 rounded-full bg-slate-800/80 px-2.5 py-1 text-[10px] text-slate-300"
                       >
                         {amenity === 'Wifi' && <Wifi className="h-3 w-3" />}
@@ -136,14 +137,24 @@ export default function HotelsPage() {
                         {amenity === 'Ski Access' && <Mountain className="h-3 w-3" />}
                         {amenity === 'Car Parking' && <Car className="h-3 w-3" />}
                         {amenity === 'Coffee Shop' && <Coffee className="h-3 w-3" />}
+                        {amenity === 'Pool' && <span className="text-xs">🏊</span>}
+                        {amenity === 'Bar' && <span className="text-xs">🍸</span>}
+                        {amenity === 'Spa' && <span className="text-xs">💆</span>}
+                        {amenity === 'River View' && <span className="text-xs">🌊</span>}
+                        {amenity === 'Luxury' && <span className="text-xs">✨</span>}
+                        {!['Wifi', 'Restaurant', 'Ski Access', 'Car Parking', 'Coffee Shop', 'Pool', 'Bar', 'Spa', 'River View', 'Luxury'].includes(amenity) && <Building className="h-3 w-3" />}
                         {amenity}
                       </span>
                     ))}
                   </div>
 
-                  {/* CTA Button */}
+                  {/* CTA Button - Opens Popup */}
                   <button
-                    onClick={() => onRequestCallback()}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      onRequestCallback(`${hotel.name} Booking`);
+                    }}
                     className="mt-4 w-full flex items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm font-semibold bg-gradient-to-r from-emerald-500 to-emerald-600 text-white shadow-lg shadow-emerald-500/30 transition-all hover:shadow-emerald-500/50"
                   >
                     <Phone className="h-4 w-4" />
@@ -160,6 +171,9 @@ export default function HotelsPage() {
               <p className="mt-2 text-slate-500">Try adjusting your search criteria</p>
             </div>
           )}
+
+          {/* WhatsApp CTA */}
+          <WhatsAppCTA message="Latest Hotels & Best Deals" section="hotels" />
         </div>
       </main>
     </div>

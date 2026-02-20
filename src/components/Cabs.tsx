@@ -120,7 +120,7 @@ const allCabs = [
 ];
 
 const homeCabs = allCabs.filter((cab) =>
-  ['Tempo Traveller (14)', 'Tempo Traveller (19)', 'Tempo Traveller (27)', 'Toyota Innova'].includes(cab.name)
+  ['Mahindra Thar', 'Toyota Etios', 'Toyota Innova', 'Tempo Traveller (14)'].includes(cab.name)
 );
 
 export default function Cabs({ showAll = false }: Props) {

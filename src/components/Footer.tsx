@@ -1,4 +1,5 @@
-import { Phone, Mail, MapPin, Heart, ArrowRight, Send, Mountain } from 'lucide-react';
+import { useState } from 'react';
+import { Phone, Mail, MapPin, Heart, ArrowRight, Send, Mountain, CheckCircle, Loader2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const quickLinks = [
@@ -7,6 +8,7 @@ const quickLinks = [
   { label: 'Destinations', to: '/destinations' },
   { label: 'Adventure', to: '/adventure' },
   { label: 'Gallery', to: '/gallery' },
+  { label: 'Reviews', to: '/reviews' },
   { label: 'Contact', to: '/contact' },
 ];
 
@@ -20,6 +22,46 @@ const destinations = [
 ];
 
 export default function Footer() {
+  const [email, setEmail] = useState('');
+  const [subscribing, setSubscribing] = useState(false);
+  const [subscribed, setSubscribed] = useState(false);
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || subscribing) return;
+
+    setSubscribing(true);
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/flyhooktourtravel@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          email: email,
+          subject: 'New Email Subscription',
+          message: `This email has subscribed to your newsletter: ${email}`,
+          _subject: 'Fly Hook – New Newsletter Subscriber',
+          _template: 'table',
+          _captcha: 'false',
+          _next: 'false',
+        }),
+      });
+
+      if (response.ok) {
+        setSubscribed(true);
+        setEmail('');
+        setTimeout(() => setSubscribed(false), 3000);
+      }
+    } catch (error) {
+      console.error('Subscription failed:', error);
+    } finally {
+      setSubscribing(false);
+    }
+  };
+
   return (
     <footer className="relative bg-slate-950 border-t border-slate-800 pb-24 lg:pb-0">
       {/* Newsletter CTA */}
@@ -36,17 +78,39 @@ export default function Footer() {
                 Subscribe for exclusive deals and travel tips.
               </p>
             </div>
-            <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
+            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
               <input
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                className="rounded-xl sm:rounded-2xl bg-white/20 backdrop-blur-sm border border-white/30 px-5 py-3.5 text-white placeholder:text-white/60 outline-none focus:bg-white/30 transition w-full sm:w-64 lg:w-72 text-base"
+                required
+                disabled={subscribing || subscribed}
+                className="rounded-xl sm:rounded-2xl bg-white/20 backdrop-blur-sm border border-white/30 px-5 py-3.5 text-white placeholder:text-white/60 outline-none focus:bg-white/30 transition w-full sm:w-64 lg:w-72 text-base disabled:opacity-60"
               />
-              <button className="flex items-center justify-center gap-2 rounded-xl sm:rounded-2xl bg-white px-6 py-3.5 font-semibold text-emerald-700 transition-all hover:bg-emerald-50 tap-scale shrink-0">
-                <Send className="h-4 w-4" />
-                Subscribe
+              <button
+                type="submit"
+                disabled={subscribing || subscribed}
+                className="flex items-center justify-center gap-2 rounded-xl sm:rounded-2xl bg-white px-6 py-3.5 font-semibold text-emerald-700 transition-all hover:bg-emerald-50 tap-scale shrink-0 disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {subscribing ? (
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                    Sending...
+                  </>
+                ) : subscribed ? (
+                  <>
+                    <CheckCircle className="h-4 w-4" />
+                    Subscribed!
+                  </>
+                ) : (
+                  <>
+                    <Send className="h-4 w-4" />
+                    Subscribe
+                  </>
+                )}
               </button>
-            </div>
+            </form>
           </div>
         </div>
       </div>
