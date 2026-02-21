@@ -110,6 +110,8 @@ const router = createBrowserRouter([
       </Layout>
     ),
   },
-]);
+], {
+  basename: '/fly-hook/',
+});
 
 export default router;
