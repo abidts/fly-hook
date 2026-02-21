@@ -1,7 +1,6 @@
-
 {
   "name": "react-vite-tailwind",
-  "homepage":"https://abidts.github.io/Fly-Hook/",
+  "homepage": "https://abidts.github.io/Fly-Hook/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -25,8 +24,8 @@
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "5.1.1",
+    "gh-pages": "^6.3.0",
     "tailwindcss": "4.1.17",
-    "gh-pages": "^5.0.0",
     "typescript": "5.9.3",
     "vite": "7.2.4",
     "vite-plugin-singlefile": "2.3.0"
