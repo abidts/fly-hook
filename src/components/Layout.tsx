@@ -5,6 +5,7 @@ import WhatsAppPopup from './WhatsAppPopup';
 import SocialSidebar from './SocialSidebar';
 import CallbackPopup from './CallbackPopup';
 import Footer from './Footer';
+import MobileBottomNav from './MobileBottomNav';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -49,6 +50,7 @@ export default function Layout({ children }: LayoutProps) {
         />
       </CallbackContext.Provider>
       <WhatsAppPopup />
+      <MobileBottomNav />
     </>
   );
 }

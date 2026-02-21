@@ -4,20 +4,19 @@ import { useNavigate } from 'react-router-dom';
 import { CallbackContext } from './Layout';
 
 const navItems = [
-  { icon: Home, label: 'Home', path: '/' },
-  { icon: MapPin, label: 'Explore', path: '/destinations' },
-  { icon: Package, label: 'Packages', path: '/packages' },
-  { icon: Phone, label: 'Call', action: true },
+  { icon: MapPin, label: 'Destination', path: '/destinations' },
+  { icon: Package, label: 'Package', path: '/packages' },
+  { icon: Car, label: 'Cabs', path: '/cabs' },
+  { icon: MessageCircle, label: 'Whatsapp', action: true },
 ];
 
 const moreItems = [
+  { icon: Home, label: 'Home', path: '/' },
   { icon: Building, label: 'Hotels', path: '/hotels' },
   { icon: Mountain, label: 'Adventure', path: '/adventure' },
-  { icon: Car, label: 'Cabs', path: '/cabs' },
   { icon: Camera, label: 'Gallery', path: '/gallery' },
-  { icon: MessageSquare, label: 'Reviews', path: '/reviews' },
   { icon: Flame, label: 'About', path: '/about' },
-  { icon: MessageCircle, label: 'Contact', path: '/contact' },
+  { icon: Phone, label: 'Contact', path: '/contact' },
 ];
 
 export default function MobileBottomNav() {
@@ -46,7 +45,8 @@ export default function MobileBottomNav() {
 
   const handleNavClick = (item: typeof navItems[0]) => {
     if (item.action) {
-      onRequestCallback();
+      // Open WhatsApp directly
+      window.open('https://wa.me/916006500852', '_blank');
     } else if (item.path) {
       navigate(item.path);
     }
@@ -92,26 +92,26 @@ export default function MobileBottomNav() {
           <div className="flex items-stretch justify-around">
             {navItems.map((item) => {
               const isActive = !item.action && item.path === '/';
-              const isCall = item.action;
-              
+              const isWhatsapp = item.action;
+
               return (
                 <button
                   key={item.label}
                   onClick={() => handleNavClick(item)}
                   className={`relative flex flex-1 flex-col items-center gap-1 py-3 transition-all tap-scale ${
-                    isCall 
-                      ? 'text-white' 
-                      : isActive 
-                        ? 'text-emerald-400' 
+                    isWhatsapp
+                      ? 'text-white'
+                      : isActive
+                        ? 'text-emerald-400'
                         : 'text-slate-400'
                   }`}
                 >
-                  {/* Call button special styling */}
-                  {isCall ? (
+                  {/* WhatsApp button special styling */}
+                  {isWhatsapp ? (
                     <div className="relative -mt-5 mb-1">
-                      <div className="absolute inset-0 rounded-full bg-emerald-500 animate-ping opacity-30" />
-                      <div className="relative flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-r from-emerald-500 to-emerald-600 shadow-lg shadow-emerald-500/40">
-                        <Phone className="h-6 w-6" />
+                      <div className="absolute inset-0 rounded-full bg-green-500 animate-ping opacity-30" />
+                      <div className="relative flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-r from-green-500 to-green-600 shadow-lg shadow-green-500/40">
+                        <MessageCircle className="h-6 w-6" />
                       </div>
                     </div>
                   ) : (
@@ -124,7 +124,7 @@ export default function MobileBottomNav() {
                       </div>
                     </>
                   )}
-                  <span className={`text-[10px] font-medium ${isCall ? 'text-emerald-400' : ''}`}>
+                  <span className={`text-[10px] font-medium ${isWhatsapp ? 'text-green-400' : ''}`}>
                     {item.label}
                   </span>
                 </button>

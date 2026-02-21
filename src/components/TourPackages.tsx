@@ -87,14 +87,14 @@ export default function TourPackages() {
   return (
     <section id="packages" className="relative py-16 sm:py-24 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-500/50 to-transparent" />
-      
+
       {/* Background decoration */}
       <div className="absolute top-1/2 left-1/4 -translate-y-1/2 h-96 w-96 rounded-full bg-amber-500/5 blur-3xl pointer-events-none" />
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-0 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 sm:gap-6 reveal">
-          <div className="max-w-2xl">
+          <div className="max-w-2xl px-4 sm:px-0">
             <span className="inline-flex items-center gap-2 rounded-full bg-amber-500/10 border border-amber-500/20 px-4 py-1.5 text-sm font-medium text-amber-400">
               <Sparkles className="h-4 w-4" />
               Tour Packages
@@ -120,17 +120,28 @@ export default function TourPackages() {
         </div>
 
         {/* Horizontal Slider */}
-        <div
-          ref={scrollRef}
-          className="mt-8 sm:mt-12 flex gap-4 sm:gap-6 overflow-x-auto no-scrollbar pb-4 -mx-4 px-4 snap-x snap-mandatory scroll-smooth"
-        >
+        <div className="mt-8 sm:mt-12">
+          <div
+            ref={scrollRef}
+            className="flex overflow-x-auto no-scrollbar pb-4 snap-x snap-mandatory scroll-smooth"
+            style={{ 
+              WebkitOverflowScrolling: 'touch',
+              flexWrap: 'nowrap' as const,
+              gap: '1rem',
+              paddingLeft: '1rem',
+              paddingRight: '1rem',
+              marginLeft: '-1rem',
+              marginRight: '-1rem',
+            }}
+          >
           {packages.map((pkg, index) => (
             <div
               key={pkg.name}
-              className="group relative flex-shrink-0 w-[280px] sm:w-[360px] overflow-hidden rounded-3xl bg-slate-900/80 border border-slate-800 transition-all duration-500 hover:border-slate-700 snap-start tap-scale"
-              style={{ 
+              className="group relative flex-none w-[280px] sm:w-[360px] overflow-hidden rounded-3xl bg-slate-900/80 border border-slate-800 transition-all duration-500 hover:border-slate-700 snap-start tap-scale"
+              style={{
                 transform: activeCard === index ? 'scale(1)' : 'scale(0.98)',
                 opacity: activeCard === index ? 1 : 0.8,
+                marginRight: index < packages.length - 1 ? '1rem' : '0',
               }}
             >
               <Link 
@@ -218,6 +229,7 @@ export default function TourPackages() {
               </button>
             </div>
           ))}
+          </div>
         </div>
 
         {/* Mobile Indicators */}
