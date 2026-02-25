@@ -227,9 +227,9 @@ The platform offers a diverse fleet of vehicles:
 | **Innova Crysta** | MUV | 7 | Premium Family |
 | **Toyota Camry** | Premium Sedan | 4 | Business Travel |
 | **Mahindra Thar** | 4x4 SUV | 4 | Off-Road Adventures |
-| **Tempo Traveller (14)** | Mini Bus | 14 | Group Tours |
-| **Tempo Traveller (19)** | Mini Bus | 19 | Large Groups |
-| **Tempo Traveller (27)** | Mini Bus | 27 | Events & Conferences |
+| **Tempo Traveller (17)** | Mini Bus | 17 | Group Tours |
+| **Tempo Traveller (20)** | Mini Bus | 20 | Large Groups |
+| **Tempo Traveller (26)** | Mini Bus | 26 | Events & Conferences |
 
 ---
 

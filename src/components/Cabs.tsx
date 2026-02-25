@@ -13,7 +13,7 @@ const allCabs = [
     image: 'https://res.cloudinary.com/dveg0ai0n/image/upload/v1771496836/RedComm_-_Hire_Swift_Dzire_for_Tezpur_Kaziranga_Shillong_Cherrapunjee_Swift_Dzire_On_Rent_at_Low_Price_u4ryau.jpg',
     seats: '4',
     fuel: 'Petrol',
-    transmission: 'Auto',
+    transmission: 'Manual',
     rating: '4.7',
     best: 'City Tours',
     color: 'from-sky-500 to-blue-600',
@@ -46,7 +46,7 @@ const allCabs = [
     image: 'https://res.cloudinary.com/dveg0ai0n/image/upload/v1771522294/toyota-camry_pb3ph6.jpg',
     seats: '4',
     fuel: 'Petrol/Hybrid',
-    transmission: 'Auto',
+    transmission: 'Manual',
     rating: '4.8',
     best: 'Business Travel',
     color: 'from-purple-500 to-indigo-600',
@@ -57,7 +57,7 @@ const allCabs = [
     image: 'https://res.cloudinary.com/dveg0ai0n/image/upload/v1771496833/__3_o9yb7c.jpg',
     seats: '7',
     fuel: 'Diesel',
-    transmission: 'Auto',
+    transmission: 'Manual',
     rating: '4.9',
     best: 'Family Tours',
     color: 'from-emerald-500 to-teal-600',
@@ -68,16 +68,16 @@ const allCabs = [
     image: 'https://res.cloudinary.com/dveg0ai0n/image/upload/v1771496833/__3_o9yb7c.jpg',
     seats: '7',
     fuel: 'Diesel',
-    transmission: 'Auto',
+    transmission: 'Manual',
     rating: '4.9',
     best: 'Premium Family',
     color: 'from-emerald-500 to-teal-600',
   },
   {
-    name: 'Tempo Traveller (14)',
+    name: 'Tempo Traveller (17)',
     type: 'Mini Bus',
     image: 'https://images.unsplash.com/photo-1715340614342-899407bed6dd?w=900&q=80&auto=format&fit=crop',
-    seats: '14',
+    seats: '17',
     fuel: 'Diesel',
     transmission: 'Manual',
     rating: '4.6',
@@ -85,10 +85,10 @@ const allCabs = [
     color: 'from-amber-500 to-orange-600',
   },
   {
-    name: 'Tempo Traveller (19)',
+    name: 'Tempo Traveller (20)',
     type: 'Mini Bus',
     image: 'https://images.unsplash.com/photo-1715340614342-899407bed6dd?w=900&q=80&auto=format&fit=crop',
-    seats: '19',
+    seats: '20',
     fuel: 'Diesel',
     transmission: 'Manual',
     rating: '4.6',
@@ -96,10 +96,10 @@ const allCabs = [
     color: 'from-amber-500 to-orange-600',
   },
   {
-    name: 'Tempo Traveller (27)',
+    name: 'Tempo Traveller (26)',
     type: 'Mini Bus',
     image: 'https://images.unsplash.com/photo-1715340614342-899407bed6dd?w=900&q=80&auto=format&fit=crop',
-    seats: '27',
+    seats: '26',
     fuel: 'Diesel',
     transmission: 'Manual',
     rating: '4.6',
@@ -120,7 +120,7 @@ const allCabs = [
 ];
 
 const homeCabs = allCabs.filter((cab) =>
-  ['Mahindra Thar', 'Toyota Etios', 'Toyota Innova', 'Tempo Traveller (14)'].includes(cab.name)
+  ['Mahindra Thar', 'Toyota Etios', 'Toyota Innova', 'Tempo Traveller (17)'].includes(cab.name)
 );
 
 export default function Cabs({ showAll = false }: Props) {

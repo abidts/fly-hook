@@ -1,38 +1,69 @@
-import { useState, useEffect } from 'react';
 import { MessageCircle, X } from 'lucide-react';
 
 const WHATSAPP_NUMBER = '916006500852';
-const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hi! I\'m interested in Kashmir tour packages. Please share more details.')}`;
 
-export default function WhatsAppPopup() {
-  const [isVisible, setIsVisible] = useState(false);
+interface WhatsAppPopupProps {
+  isOpen: boolean;
+  onClose: () => void;
+  message?: string;
+}
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, []);
+export default function WhatsAppPopup({ isOpen, onClose, message }: WhatsAppPopupProps) {
+  if (!isOpen) return null;
 
   const openWhatsApp = () => {
-    window.open(WHATSAPP_URL, '_blank');
+    const whatsappMessage = message || 'Hi! I\'m interested in Kashmir tour packages. Please share more details.';
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappMessage)}`;
+    window.open(url, '_blank');
+    onClose();
   };
 
-  if (!isVisible) return null;
-
   return (
-    <div className="fixed bottom-6 right-6 z-50">
-      {/* Floating Button */}
-      <button
-        onClick={openWhatsApp}
-        className="flex items-center justify-center rounded-full w-14 h-14 bg-green-500 text-white shadow-lg transition-all hover:bg-green-600 hover:shadow-xl hover:scale-110 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 animate-bounce"
-        aria-label="Open WhatsApp Chat"
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={onClose}>
+      <div 
+        className="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl animate-scale-in"
+        onClick={(e) => e.stopPropagation()}
       >
-        <MessageCircle className="h-7 w-7" />
-        <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-white text-xs font-bold text-green-600">
-          ✓
-        </span>
-      </button>
+        {/* Header */}
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center">
+              <MessageCircle className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <h3 className="font-bold text-gray-900 text-lg">Chat on WhatsApp</h3>
+              <p className="text-sm text-gray-500">Expert travel consultants online now</p>
+            </div>
+          </div>
+          <button
+            onClick={onClose}
+            className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors"
+            aria-label="Close"
+          >
+            <X className="w-5 h-5 text-gray-600" />
+          </button>
+        </div>
+
+        {/* Message Preview */}
+        <div className="bg-gray-50 rounded-xl p-4 mb-6">
+          <p className="text-sm text-gray-700 font-medium mb-2">Your message:</p>
+          <p className="text-sm text-gray-600">{message || 'Hi! I\'m interested in Kashmir tour packages. Please share more details.'}</p>
+        </div>
+
+        {/* CTA Button */}
+        <button
+          onClick={openWhatsApp}
+          className="w-full flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold py-3.5 rounded-xl transition-all hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]"
+        >
+          <MessageCircle className="w-5 h-5" />
+          <span>Open WhatsApp</span>
+        </button>
+
+        {/* Trust Badge */}
+        <p className="text-xs text-center text-gray-400 mt-4">
+          ✓ Instant response from our travel experts
+        </p>
+      </div>
     </div>
   );
 }

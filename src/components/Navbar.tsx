@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Phone, ChevronRight, Mountain } from 'lucide-react';
+import { Menu, X, Phone, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import LogoMark from './LogoMark';
 
 interface Props {
   onRequestCallback: () => void;
@@ -41,17 +42,17 @@ export default function Navbar({ onRequestCallback }: Props) {
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'bg-slate-950/95 backdrop-blur-xl shadow-2xl shadow-black/20 py-2' : 'bg-slate-950/90 backdrop-blur-xl py-3 sm:py-4'}`}>
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'bg-slate-950/95 backdrop-blur-xl shadow-2xl shadow-black/20 py-1.5' : 'bg-slate-950/90 backdrop-blur-xl py-2 sm:py-3'}`}>
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-2 sm:gap-3 group">
-              <div className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-sky-500 shadow-lg shadow-emerald-500/30 transition-all group-hover:scale-110 group-hover:shadow-emerald-500/50">
-                <Mountain className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
+            <Link to="/" className="flex items-center gap-1.5 sm:gap-2 group">
+              <div className="transition-all group-hover:scale-110">
+                <LogoMark size={48} />
               </div>
               <div>
-                <span className="block font-playfair text-base sm:text-lg font-bold text-white leading-tight">FLY HOOK</span>
-                <span className="block font-dancing text-xs sm:text-sm text-emerald-400 leading-tight -mt-0.5">Tour & Travel</span>
+                <span className="block font-playfair text-sm sm:text-base font-bold text-white leading-tight">FLY HOOK</span>
+                <span className="block font-dancing text-[10px] sm:text-xs text-emerald-400 leading-tight -mt-0.5">Tour & Travel</span>
               </div>
             </Link>
 

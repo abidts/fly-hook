@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Phone, Mail, MapPin, Heart, ArrowRight, Send, Mountain, CheckCircle, Loader2 } from 'lucide-react';
+import { Phone, Mail, MapPin, ArrowRight, Send, CheckCircle, Loader2, Instagram, Facebook } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import LogoMark from './LogoMark';
 
 const quickLinks = [
   { label: 'About Us', to: '/about' },
@@ -120,9 +121,9 @@ export default function Footer() {
         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
           {/* Brand */}
           <div className="col-span-2 sm:col-span-2 lg:col-span-1">
-            <a href="#home" className="flex items-center gap-3 group">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-sky-500 shadow-lg transition-transform group-hover:scale-110">
-                <Mountain className="h-5 w-5 text-white" />
+            <a href="#home" className="flex items-center gap-2 group">
+              <div className="transition-transform group-hover:scale-110">
+                <LogoMark size={64} />
               </div>
               <div>
                 <span className="block font-playfair text-lg font-bold text-white">FLY HOOK</span>
@@ -187,6 +188,31 @@ export default function Footer() {
                 <a href="mailto:flyhooktourtravel@gmail.com" className="text-sm text-slate-400 hover:text-emerald-400 transition-colors break-all">flyhooktourtravel@gmail.com</a>
               </li>
             </ul>
+            
+            {/* Social Media Links - Mobile Prominent */}
+            <div className="mt-6 pt-4 border-t border-slate-800">
+              <h4 className="font-semibold text-white mb-3 text-sm">Follow Us</h4>
+              <div className="flex gap-3">
+                <a
+                  href="https://www.instagram.com/flyhook_tour_and_travel/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 text-white shadow-lg hover:shadow-pink-500/30 transition-all hover:scale-110 tap-scale"
+                  aria-label="Instagram"
+                >
+                  <Instagram className="h-5 w-5" />
+                </a>
+                <a
+                  href="https://www.facebook.com/profile.php?id=61575791690265"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 text-white shadow-lg hover:shadow-blue-500/30 transition-all hover:scale-110 tap-scale"
+                  aria-label="Facebook"
+                >
+                  <Facebook className="h-5 w-5" />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>

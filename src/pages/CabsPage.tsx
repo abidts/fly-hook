@@ -219,7 +219,7 @@ const CabsPage: React.FC = () => {
                       <option value="swift-dzire">Swift Dzire (4 seater)</option>
                       <option value="innova-crysta">Innova Crysta (7 seater)</option>
                       <option value="mahindra-thar">Mahindra Thar (4x4)</option>
-                      <option value="tempo-traveller">Tempo Traveller (12-16 seater)</option>
+                      <option value="tempo-traveller">Tempo Traveller (17-26 seater)</option>
                     </select>
                   </div>
                 </div>

@@ -13,6 +13,9 @@ import About from './components/About';
 import CabsPage from './pages/CabsPage';
 import ContactPage from './pages/ContactPage';
 
+// Use basename only in production (GitHub Pages)
+const basename = import.meta.env.PROD ? '/fly-hook/' : '/';
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -111,7 +114,7 @@ const router = createBrowserRouter([
     ),
   },
 ], {
-  basename: '/fly-hook/',
+  basename,
 });
 
 export default router;

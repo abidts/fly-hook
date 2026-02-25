@@ -2,6 +2,7 @@ import { useRef, useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Clock, MapPin, Users, Star, Check, Phone, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 import { CallbackContext } from './Layout';
+import PackageFlashyCTA from './PackageFlashyCTA';
 
 const packages = [
   {
@@ -48,15 +49,11 @@ const packages = [
 export default function TourPackages() {
   const onRequestCallback = useContext(CallbackContext) || (() => {});
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
   const [activeCard, setActiveCard] = useState(0);
 
   const checkScroll = () => {
     if (scrollRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-      setCanScrollLeft(scrollLeft > 10);
-      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+      const { scrollLeft } = scrollRef.current;
       
       // Calculate active card for mobile indicator
       const cardWidth = 300;
@@ -73,16 +70,6 @@ export default function TourPackages() {
       return () => el.removeEventListener('scroll', checkScroll);
     }
   }, []);
-
-  const scroll = (direction: 'left' | 'right') => {
-    if (scrollRef.current) {
-      const cardWidth = scrollRef.current.clientWidth < 640 ? 280 : 380;
-      scrollRef.current.scrollBy({
-        left: direction === 'left' ? -cardWidth : cardWidth,
-        behavior: 'smooth',
-      });
-    }
-  };
 
   return (
     <section id="packages" className="relative py-16 sm:py-24 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 overflow-hidden">
@@ -176,7 +163,7 @@ export default function TourPackages() {
               </div>
 
               {/* Details */}
-              <div className="p-4 sm:p-5">
+              <div className="relative p-4 sm:p-5 pb-16 min-h-[180px] sm:min-h-[200px]">
                 {/* Duration & Group */}
                 <div className="flex flex-wrap items-center gap-3 text-xs sm:text-sm text-slate-400">
                   <span className="flex items-center gap-1.5">
@@ -213,9 +200,9 @@ export default function TourPackages() {
                     </span>
                   ))}
                 </div>
-
-                {/* CTA Button - Moved to absolute position to avoid click conflict */}
               </div>
+
+              {/* CTA Button - Fixed position at bottom */}
               <button
                 onClick={(e) => {
                   e.stopPropagation();
@@ -261,6 +248,9 @@ export default function TourPackages() {
           <span className="sm:hidden">Swipe to explore</span>
           <ChevronRight className="h-4 w-4 swipe-hint sm:hidden" />
         </div>
+
+        {/* Flashy Package CTA */}
+        <PackageFlashyCTA className="mt-12 sm:mt-16 sm:px-0 px-4" />
       </div>
     </section>
   );

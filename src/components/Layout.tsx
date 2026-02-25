@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
-import WhatsAppPopup from './WhatsAppPopup';
+import WhatsAppButton from './WhatsAppButton';
 import SocialSidebar from './SocialSidebar';
 import CallbackPopup from './CallbackPopup';
 import Footer from './Footer';
@@ -49,7 +49,7 @@ export default function Layout({ children }: LayoutProps) {
           subject={popupSubject}
         />
       </CallbackContext.Provider>
-      <WhatsAppPopup />
+      <WhatsAppButton />
       <MobileBottomNav />
     </>
   );

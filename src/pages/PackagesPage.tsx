@@ -1,8 +1,8 @@
+import { useContext } from 'react';
 import { Clock, MapPin, Users, Star, Check, Phone, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useContext } from 'react';
 import { CallbackContext } from '../components/Layout';
-import WhatsAppCTA from '../components/WhatsAppCTA';
+import GetItinerary from '../components/GetItinerary';
 
 const packages = [
   {
@@ -103,10 +103,10 @@ export default function PackagesPage() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-white">
-      <main className="pt-16 pb-16 sm:py-24">
+      <main className="pt-20 pb-16 sm:py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 sm:gap-6">
+          <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 sm:gap-6 mb-8">
             <div className="max-w-2xl">
               <span className="inline-flex items-center gap-2 rounded-full bg-amber-500/10 border border-amber-500/20 px-4 py-1.5 text-sm font-medium text-amber-400">
                 <Sparkles className="h-4 w-4" />
@@ -114,7 +114,7 @@ export default function PackagesPage() {
               </span>
               <h1 className="mt-4 font-playfair text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
                 Handcrafted Travel
-                <span className="block gradient-text">Packages for You</span>
+                <span className="block gradient-text mt-1">Packages for You</span>
               </h1>
               <p className="mt-3 sm:mt-4 text-base sm:text-lg text-slate-400">
                 Choose from our curated packages. Contact us for custom itineraries!
@@ -123,7 +123,7 @@ export default function PackagesPage() {
           </div>
 
           {/* Grid */}
-          <div className="mt-8 sm:mt-12 grid gap-5 sm:gap-6 lg:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-5 sm:gap-6 lg:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {packages.map((pkg) => (
               <div
                 key={pkg.name}
@@ -158,7 +158,7 @@ export default function PackagesPage() {
                 </Link>
 
                 {/* Details */}
-                <div className="p-4 sm:p-5 flex flex-col gap-3">
+                <div className="p-4 sm:p-5 flex flex-col gap-3 min-h-[180px] sm:min-h-[200px]">
                   {/* Duration & Group */}
                   <div className="flex flex-wrap items-center gap-3 text-xs sm:text-sm text-slate-400">
                     <span className="flex items-center gap-1.5">
@@ -213,8 +213,11 @@ export default function PackagesPage() {
             ))}
           </div>
 
-          {/* WhatsApp CTA */}
-          <WhatsAppCTA message="Latest Tour Packages & Custom Itineraries" section="packages" />
+          {/* Get Itinerary CTA Section */}
+          <div className="mt-16 sm:mt-24">
+            <GetItinerary variant="half" />
+          </div>
+
         </div>
       </main>
     </div>

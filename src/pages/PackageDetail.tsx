@@ -148,8 +148,8 @@ const packages: Record<string, PackageData> = {
       },
       {
         day: 4,
-        title: 'Srinagar to Sonmarg & Departure',
-        description: 'Have a good and tasty breakfast at the Srinagar hotel and then move to Sonmarg which is 80 km away from Srinagar and takes about 1 hour and 45 minutes from Srinagar. In Gulmarg visit Thajiwas Glacier, then do a Temple tour. Do a pony ride and watersports at Manasbal. Spend the whole day like a full fledged excursion. Then go back to Srinagar hotel. Have dinner there and spend the night there.'
+        title: 'Srinagar (Lal Chowk) & Departure',
+        description: 'Have a good and tasty breakfast at the Srinagar hotel. Then proceed to explore Lal Chowk, the heart of Srinagar city. Visit the famous clock tower, shop for Kashmiri handicrafts, dry fruits, and souvenirs at the local markets. Experience the vibrant culture and bustling marketplace of the old city. After exploring Lal Chowk, you will be transferred to Srinagar Airport for your departure journey, carrying back beautiful memories of Kashmir.'
       }
     ],
     images: [
@@ -257,22 +257,22 @@ const packages: Record<string, PackageData> = {
   'grand-jk': {
     name: 'Grand J&K',
     slug: 'grand-jk',
-    duration: '7 Days / 6 Nights',
+    duration: '6 Days / 5 Nights',
     image: 'https://images.unsplash.com/photo-1537126694932-c0f39026528e?w=1200&q=80',
-    destinations: ['Srinagar', 'Gulmarg', 'Pahalgam', 'Sonmarg', 'Leh'],
+    destinations: ['Srinagar', 'Pahalgam', 'Gulmarg', 'Sonmarg'],
     groupSize: '2-10',
     rating: '5.0',
     reviews: 312,
     tag: 'Premium',
     tagColor: 'from-amber-500 to-orange-600',
-    description: 'Experience the ultimate Kashmir journey with our Grand J&K package. This comprehensive itinerary covers all the major attractions including the mystical Leh Ladakh. Perfect for those who want to explore everything Kashmir has to offer.',
+    description: 'Experience the ultimate Kashmir journey with our Grand J&K package. This comprehensive itinerary covers all the major attractions of Kashmir Valley. Perfect for those who want to explore everything Kashmir has to offer.',
     highlights: [
-      'Complete Kashmir experience',
-      'Leh Ladakh excursion',
+      'Complete Kashmir Valley experience',
       'Stay in premium hotels',
       'All major sightseeing included',
-      'Professional guide',
-      'Adventure activities'
+      'Gondola ride in Gulmarg',
+      'Thajiwas Glacier visit',
+      'Lal Chowk market tour'
     ],
     itinerary: [
       {
@@ -282,33 +282,28 @@ const packages: Record<string, PackageData> = {
       },
       {
         day: 2,
-        title: 'Srinagar to Gulmarg',
-        description: 'Drive to Gulmarg after breakfast. Enjoy the scenic beauty and take the Gondola ride to Kongdoori. Explore the golf course and meadows. Overnight in Gulmarg.'
+        title: 'Srinagar to Pahalgam',
+        description: 'After breakfast, drive to Pahalgam, the valley of love. Enroute visit the ancient Martand Sun Temple. Check into hotel and enjoy the serene beauty of Lidder River. Evening at leisure for local market exploration. Overnight stay in Pahalgam.'
       },
       {
         day: 3,
-        title: 'Gulmarg to Pahalgam',
-        description: 'Proceed to Pahalgam via Srinagar. Visit the ancient Martand Sun Temple enroute. Check into hotel and explore the local markets. Overnight stay in Pahalgam.'
+        title: 'Pahalgam to Gulmarg',
+        description: 'Proceed to Gulmarg after breakfast. Enjoy the scenic drive through beautiful valleys. Check into hotel and take the Gondola ride to Kongdoori and Apharwat Peak. Explore the golf course and meadows. Overnight in Gulmarg.'
       },
       {
         day: 4,
-        title: 'Pahalgam Sightseeing',
-        description: 'Full day excursion to Betaab Valley, Aru Valley, and Chandanwari. These pristine valleys offer breathtaking views and are perfect for nature walks. Return to hotel for overnight stay.'
+        title: 'Gulmarg to Sonmarg',
+        description: 'Drive to Sonmarg, the meadow of gold. Enroute enjoy the stunning mountain views. Visit the magnificent Thajiwas Glacier on pony back. Enjoy the views of snow-capped peaks and the Sindh River. Overnight in Sonmarg.'
       },
       {
         day: 5,
-        title: 'Pahalgam to Sonmarg',
-        description: 'Drive to Sonmarg, the meadow of gold. Visit the stunning Thajiwas Glacier on pony back. Enjoy the views of snow-capped peaks and the Sindh River. Overnight in Sonmarg.'
+        title: 'Sonmarg to Srinagar',
+        description: 'After breakfast, drive back to Srinagar. Check into hotel and spend the evening at leisure. Optional visit to Mughal Gardens - Shalimar Bagh and Nishat Bagh. Overnight stay in Srinagar.'
       },
       {
         day: 6,
-        title: 'Sonmarg to Leh',
-        description: 'Early morning drive to Leh via Zoji La Pass. Enroute visit Magnetic Hill, Sangam Point, and Gurudwara Pathar Sahib. Arrive in Leh and check into hotel. Acclimatize to the high altitude.'
-      },
-      {
-        day: 7,
-        title: 'Leh Departure',
-        description: 'After breakfast, visit Leh Palace and Shanti Stupa. Explore the local markets for souvenirs. Transfer to Leh Airport for your onward journey.'
+        title: 'Srinagar (Lal Chowk) & Departure',
+        description: 'Have a good and tasty breakfast at the Srinagar hotel. Then proceed to explore Lal Chowk, the heart of Srinagar city. Visit the famous clock tower, shop for Kashmiri handicrafts, dry fruits, and souvenirs at the local markets. Experience the vibrant culture and bustling marketplace of the old city. After exploring Lal Chowk, you will be transferred to Srinagar Airport for your departure journey, carrying back beautiful memories of Kashmir.'
       }
     ],
     images: [
@@ -318,23 +313,21 @@ const packages: Record<string, PackageData> = {
       'https://images.unsplash.com/photo-1609766857041-ed402ea8069a?w=800&q=80'
     ],
     price: {
-      perPerson: 35999,
+      perPerson: 28999,
       discount: 10,
       includes: [
-        '6 nights accommodation',
+        '5 nights accommodation',
         'Daily breakfast & dinner',
         'All transfers and sightseeing',
         'Gondola ride Phase 1',
-        'Professional guide',
-        'Permits for Leh',
+        'Pony ride at Thajiwas Glacier',
         'All taxes'
       ],
       excludes: [
         'Flights to/from Kashmir',
         'Lunch',
         'Personal expenses',
-        'Monastery entry fees',
-        'Pony rides',
+        'Entry fees',
         'Travel insurance'
       ]
     }
@@ -345,7 +338,7 @@ const packages: Record<string, PackageData> = {
     duration: '6 Days / 5 Nights',
     image: 'https://images.unsplash.com/photo-1595815771614-ade9d652a65d?w=1200&q=80',
     destinations: ['Srinagar', 'Gulmarg', 'Pahalgam', 'Dal Lake'],
-    groupSize: '4-8',
+    groupSize: '4-19',
     rating: '4.7',
     reviews: 198,
     tag: 'Family',

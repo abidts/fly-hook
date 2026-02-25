@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Sparkles, Mountain } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
+import LogoMark from './LogoMark';
 
 export default function Preloader() {
   const [progress, setProgress] = useState(0);
@@ -53,13 +54,13 @@ export default function Preloader() {
         {/* Rotating ring */}
         <div className="absolute inset-0 -m-8 rounded-full border-2 border-dashed border-emerald-500/20 animate-spin-slow" />
         <div className="absolute inset-0 -m-4 rounded-full border border-sky-500/20 animate-spin-slow" style={{ animationDirection: 'reverse', animationDuration: '15s' }} />
-        
+
         {/* Pulsing glow */}
         <div className="absolute inset-0 rounded-full bg-emerald-500/20 animate-ping" style={{ animationDuration: '1.5s' }} />
-        
+
         {/* Logo container */}
-        <div className="relative flex h-28 w-28 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 via-emerald-600 to-sky-500 shadow-2xl animate-glow-pulse">
-          <Mountain className="h-14 w-14 text-white drop-shadow-lg" />
+        <div className="relative flex h-28 w-28 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm shadow-2xl animate-glow-pulse">
+          <LogoMark size={80} />
         </div>
       </div>
 
