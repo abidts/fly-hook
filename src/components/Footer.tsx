@@ -133,6 +133,23 @@ export default function Footer() {
             <p className="mt-4 text-sm text-slate-400 leading-relaxed max-w-xs">
               Your premier travel partner for exploring Kashmir. Creating unforgettable memories since 2014.
             </p>
+            <div className="mt-4 pt-4 border-t border-slate-800">
+              <div className="flex items-center gap-4">
+                <img
+                  src="https://res.cloudinary.com/dveg0ai0n/image/upload/v1772117700/Screenshot_2026-02-26_at_8.16.12_PM_pi0otz.png"
+                  alt="J&K Tourism"
+                  className="h-10 sm:h-12 w-auto object-contain"
+                />
+                <img
+                  src="https://res.cloudinary.com/dveg0ai0n/image/upload/v1772117701/Screenshot_2026-02-26_at_8.16.48_PM_ksbx9i.png"
+                  alt="Ministry of Tourism, Government of India"
+                  className="h-10 sm:h-12 w-auto object-contain"
+                />
+              </div>
+              <p className="mt-2 text-xs text-slate-500">
+                Registered with Department of Tourism
+              </p>
+            </div>
           </div>
 
           {/* Quick Links */}
@@ -220,12 +237,15 @@ export default function Footer() {
       {/* Bottom Bar */}
       <div className="border-t border-slate-800">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-5 sm:py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-xs sm:text-sm text-slate-500 text-center">
+          <p className="text-xs sm:text-sm text-slate-500 text-center sm:text-left">
             © 2026 FLY HOOK Tour & Travel. All rights reserved.
           </p>
-          <p className="text-xs sm:text-sm text-slate-500">
-            EnnBi Softwares Pvt Ltd.
-          </p>
+          <div className="text-center sm:text-right">
+            <p className="text-xs text-slate-600">Powered By</p>
+            <p className="text-xs sm:text-sm text-slate-500">
+              EnnBi Softwares Pvt Ltd.
+            </p>
+          </div>
         </div>
       </div>
     </footer>
