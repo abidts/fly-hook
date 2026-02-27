@@ -161,19 +161,6 @@ export default function Cabs({ showAll = false }: Props) {
           </p>
         </div>
 
-        {/* Desktop Navigation */}
-        <div className="hidden sm:flex items-center justify-between mt-8">
-          <div />
-          {!showAll && (
-            <a
-              href="/cabs"
-              className="rounded-full border border-amber-500/40 px-4 py-2 text-sm font-semibold text-amber-300 hover:bg-amber-500/10 transition-colors"
-            >
-              View All
-            </a>
-          )}
-        </div>
-
         {/* Cabs Horizontal Scroll - Mobile, Grid on large screens */}
         <div
           ref={scrollRef}

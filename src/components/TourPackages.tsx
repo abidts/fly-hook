@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { Clock, MapPin, Users, Star, Check, Phone, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
+import { Clock, MapPin, Users, Star, Check, Phone, ChevronLeft, ChevronRight, Sparkles, ArrowRight } from 'lucide-react';
 import { CallbackContext } from './Layout';
 import PackageFlashyCTA from './PackageFlashyCTA';
 
@@ -80,7 +80,7 @@ export default function TourPackages() {
 
       <div className="mx-auto max-w-7xl px-0 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 sm:gap-6 reveal">
+        <div className="flex flex-col items-start justify-between gap-4 sm:gap-6 reveal">
           <div className="max-w-2xl px-4 sm:px-0">
             <span className="inline-flex items-center gap-2 rounded-full bg-amber-500/10 border border-amber-500/20 px-4 py-1.5 text-sm font-medium text-amber-400">
               <Sparkles className="h-4 w-4" />
@@ -93,16 +93,6 @@ export default function TourPackages() {
             <p className="mt-3 sm:mt-4 text-base sm:text-lg text-slate-400">
               Choose from our curated packages. Contact us for custom itineraries!
             </p>
-          </div>
-
-          {/* View All */}
-          <div className="hidden sm:flex items-center gap-3">
-            <Link
-              to="/packages"
-              className="mr-2 rounded-full border border-amber-500/40 px-4 py-2 text-sm font-semibold text-amber-300 hover:bg-amber-500/10 transition-colors"
-            >
-              View All
-            </Link>
           </div>
         </div>
 
@@ -247,6 +237,17 @@ export default function TourPackages() {
           <ChevronLeft className="h-4 w-4 swipe-hint sm:hidden" style={{ animationDirection: 'reverse' }} />
           <span className="sm:hidden">Swipe to explore</span>
           <ChevronRight className="h-4 w-4 swipe-hint sm:hidden" />
+        </div>
+
+        {/* View All Packages */}
+        <div className="mt-8 text-center">
+          <Link
+            to="/packages"
+            className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-500/30 transition-all hover:shadow-emerald-500/50 hover:scale-105"
+          >
+            View All Packages
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
 
         {/* Flashy Package CTA */}

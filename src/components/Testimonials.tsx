@@ -9,7 +9,7 @@ const reviews = [
     rating: 5,
     text: 'Absolutely magical experience! FLYHOOK Tour & Travel planned our honeymoon perfectly. From the houseboat stay to the Gulmarg Gondola ride, every moment was unforgettable.',
     trip: 'Honeymoon Special',
-    date: 'Mar 2024',
+    date: 'Mar 2025',
   },
   {
     name: 'Priya Patel',
@@ -18,7 +18,7 @@ const reviews = [
     rating: 5,
     text: 'Best family vacation ever! The team took care of everything. My kids loved the pony rides in Pahalgam and snow play in Gulmarg. Highly recommended!',
     trip: 'Kashmir Bliss',
-    date: 'Jan 2024',
+    date: 'Jan 2025',
   },
   {
     name: 'Amit & Sneha',
@@ -27,7 +27,7 @@ const reviews = [
     rating: 5,
     text: 'The Grand J&K package was worth every penny. Leh Ladakh was a dream come true. The driver was like family by the end of the trip!',
     trip: 'Grand J&K',
-    date: 'Apr 2024',
+    date: 'Apr 2025',
   },
   {
     name: 'Sarah Johnson',
@@ -36,7 +36,7 @@ const reviews = [
     rating: 5,
     text: 'As a solo female traveler, I felt completely safe. The trekking experience was surreal. The campfire nights were the highlight of my India trip.',
     trip: 'Adventure Trek',
-    date: 'Sep 2023',
+    date: 'Sep 2025',
   },
   {
     name: 'Vikram Singh',
@@ -45,7 +45,7 @@ const reviews = [
     rating: 5,
     text: 'Booked a group tour for 12 people. Tempo Traveller was excellent, driver very experienced. All hotels were exactly as promised. Will book again!',
     trip: 'Group Tour',
-    date: 'Dec 2023',
+    date: 'Dec 2025',
   },
 ];
 

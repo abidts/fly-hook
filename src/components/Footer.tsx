@@ -131,7 +131,7 @@ export default function Footer() {
               </div>
             </a>
             <p className="mt-4 text-sm text-slate-400 leading-relaxed max-w-xs">
-              Your premier travel partner for exploring Kashmir. Creating unforgettable memories since 2014.
+              Your premier travel partner for exploring Kashmir. Creating unforgettable memories since 2025.
             </p>
             <div className="mt-4 pt-4 border-t border-slate-800">
               <div className="flex items-center gap-4">
@@ -220,7 +220,7 @@ export default function Footer() {
                   <Instagram className="h-5 w-5" />
                 </a>
                 <a
-                  href="https://www.facebook.com/profile.php?id=61575791690265"
+                  href="https://www.facebook.com/profile.php?id=61583166238042"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 text-white shadow-lg hover:shadow-blue-500/30 transition-all hover:scale-110 tap-scale"

@@ -7,7 +7,7 @@ const featuredHotels = [
   {
     name: 'The LaLiT Grand Palace Srinagar',
     location: 'Srinagar',
-    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80',
+    image: 'https://res.cloudinary.com/dveg0ai0n/image/upload/v1771580269/Hotel_The_Lalit_Grand_Palace_Srinagar_Kashmir_g5mulq.jpg',
     rating: 4.9,
     amenities: ['Wifi', 'Restaurant', 'Spa', 'Pool'],
     type: 'Luxury',
@@ -30,7 +30,7 @@ const featuredHotels = [
   },
 ];
 
-export default function Hotels() {
+export default function Hotels({ showViewAll = true }: { showViewAll?: boolean }) {
   const onRequestCallback = useContext(CallbackContext) || (() => {});
   const getAmenityIcon = (amenity: string) => {
     switch (amenity) {
@@ -116,16 +116,18 @@ export default function Hotels() {
         ))}
       </div>
 
-      {/* View All Link */}
-      <div className="mt-8 text-center">
-        <Link
-          to="/hotels"
-          className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-500 to-orange-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-amber-500/30 transition-all hover:shadow-amber-500/50 hover:scale-105"
-        >
-          View All Hotels
-          <ArrowRight className="h-4 w-4" />
-        </Link>
-      </div>
+      {/* View All Link - only show if showViewAll is true */}
+      {showViewAll && (
+        <div className="mt-8 text-center">
+          <Link
+            to="/hotels"
+            className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-500 to-orange-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-amber-500/30 transition-all hover:shadow-amber-500/50 hover:scale-105"
+          >
+            View All Hotels
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

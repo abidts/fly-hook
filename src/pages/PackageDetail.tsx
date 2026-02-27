@@ -565,6 +565,192 @@ const packages: Record<string, PackageData> = {
         'Tips'
       ]
     }
+  },
+  'kashmir-with-katra': {
+    name: 'Kashmir With Katra',
+    slug: 'kashmir-with-katra',
+    duration: '6 Nights / 7 Days',
+    image: 'https://res.cloudinary.com/dveg0ai0n/image/upload/v1772188951/katra_w2iqdq.jpg',
+    destinations: ['Srinagar', 'Gulmarg', 'Pahalgam', 'Katra'],
+    groupSize: '2-8',
+    rating: '4.9',
+    reviews: 178,
+    tag: 'Spiritual',
+    tagColor: 'from-amber-500 to-orange-600',
+    description: 'Experience the perfect blend of Kashmir\'s natural beauty and spiritual devotion at Vaishno Devi. This unique package combines serene Kashmir tours with a sacred pilgrimage to Katra, making it ideal for spiritual seekers and families alike.',
+    highlights: [
+      'Spiritual Vaishno Devi darshan at Katra',
+      'Luxury stay in premium hotels',
+      'Private cab for comfortable travel',
+      'Complete Kashmir sightseeing',
+      'All meals included',
+      'Houseboat experience on Dal Lake',
+      'Gondola ride in Gulmarg'
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: 'Arrival in Srinagar',
+        description: 'Arrive at Srinagar Airport and receive a warm welcome. Transfer to your hotel/houseboat. Evening at leisure for a relaxing Shikara ride on Dal Lake. Overnight stay in Srinagar.'
+      },
+      {
+        day: 2,
+        title: 'Srinagar to Katra',
+        description: 'After breakfast, transfer to Katra (approx 5-6 hours). Check into hotel and rest. Evening visit to Katra market and prepare for Vaishno Devi darshan. Overnight in Katra.'
+      },
+      {
+        day: 3,
+        title: 'Vaishno Devi Darshan',
+        description: 'Early morning start for Vaishno Devi pilgrimage. Trek or use pony/palki services to reach the holy shrine. After darshan, return to hotel. Overnight in Katra.'
+      },
+      {
+        day: 4,
+        title: 'Katra to Srinagar via Pahalgam',
+        description: 'Drive back to Kashmir valley. Enroute visit the beautiful Pahalgam - the valley of love. See Lidder River, Betaab Valley. Overnight stay in Pahalgam/Srinagar.'
+      },
+      {
+        day: 5,
+        title: 'Srinagar to Gulmarg',
+        description: 'After breakfast, drive to Gulmarg - the meadow of flowers. Enjoy the Gondola ride to Apharwat Peak. Explore the scenic beauty. Return to Srinagar. Overnight stay.'
+      },
+      {
+        day: 6,
+        title: 'Srinagar Local Sightseeing',
+        description: 'Full day exploring Srinagar - visit Mughal Gardens (Shalimar Bagh, Nishat Bagh), Shankaracharya Temple, local markets at Lal Chowk. Farewell dinner. Overnight in Srinagar.'
+      },
+      {
+        day: 7,
+        title: 'Departure',
+        description: 'After breakfast, check out and transfer to Srinagar Airport. Depart with blessings of Mata Vaishno Devi and beautiful memories of Kashmir.'
+      }
+    ],
+    images: [
+      'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=1200&q=80',
+      'https://images.unsplash.com/photo-1597074866923-dc0589150bf6?w=800&q=80',
+      'https://images.unsplash.com/photo-1581791534721-e599df4417f6?w=800&q=80',
+      'https://images.unsplash.com/photo-1600702653377-2bbad1049612?w=800&q=80'
+    ],
+    price: {
+      perPerson: 24999,
+      discount: 15,
+      includes: [
+        '6 nights luxury accommodation',
+        'All meals (breakfast, lunch, dinner)',
+        'Private cab for all transfers',
+        'Vaishno Devi pilgrimage arrangements',
+        'Gondola ride in Gulmarg',
+        'Shikara ride on Dal Lake',
+        'All taxes and service charges'
+      ],
+      excludes: [
+        'Airfare to/from Srinagar',
+        'Vaishno Devi trek charges (pony/palki)',
+        'Personal expenses',
+        'Camera fees at monuments',
+        'Travel insurance',
+        'Anything not mentioned in includes'
+      ]
+    }
+  },
+  'kashmir-with-ladakh': {
+    name: 'Kashmir With Ladakh',
+    slug: 'kashmir-with-ladakh',
+    duration: '8 Nights / 9 Days',
+    image: 'https://res.cloudinary.com/dveg0ai0n/image/upload/v1771496833/3_idiots_scooter_Pangong_Lake_Leh_dwwwvp.jpg',
+    destinations: ['Srinagar', 'Pahalgam', 'Gulmarg', 'Sonamarg', 'Kargil', 'Leh', 'Nubra', 'Pangong'],
+    groupSize: '2-6',
+    rating: '4.9',
+    reviews: 203,
+    tag: 'Premium',
+    tagColor: 'from-purple-500 to-indigo-600',
+    description: 'Embark on an extraordinary journey through two of India\'s most spectacular regions. Experience the lush valleys of Kashmir and the stark beauty of Ladakh\'s high-altitude landscapes. From serene lakes to mighty mountains, this premium package offers the ultimate Himalayan adventure.',
+    highlights: [
+      'Explore serene Kashmir valleys',
+      'Discover majestic Ladakh landscapes',
+      'Visit Pangong Lake - the iconic blue lake',
+      'Nubra Valley with sand dunes',
+      'Camel safari in Hunder',
+      'Cross Zoji La, Khardung La & Chang La passes',
+      'Visit Lamayuru & Alchi monasteries',
+      'Luxury accommodation throughout'
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: 'Arrival in Srinagar – Local Sightseeing',
+        description: 'Upon arrival at Srinagar Airport, transfer to your hotel/houseboat. Later, enjoy a Shikara ride on Dal Lake, visit the Mughal Gardens, and stroll around local handicraft markets. Meals: Dinner. Stay: Srinagar.'
+      },
+      {
+        day: 2,
+        title: 'Day Trip to Pahalgam – Valley of Shepherds',
+        description: 'Full day excursion to Pahalgam, the famous Valley of Shepherds. Enjoy the scenic beauty of Lidder Valley, visit Betaab Valley, and Aru Valley. Evening return to Srinagar. Meals: Breakfast, Dinner. Stay: Srinagar.'
+      },
+      {
+        day: 3,
+        title: 'Day Trip to Gulmarg – Snow & Meadows',
+        description: 'Full day trip to Gulmarg, the meadow of flowers. Enjoy the Gondola ride to Apharwat Peak, explore the scenic meadows, and enjoy panoramic views of snow-capped peaks. Evening return to Srinagar. Meals: Breakfast, Dinner. Stay: Srinagar.'
+      },
+      {
+        day: 4,
+        title: 'Srinagar to Kargil via Sonamarg & Zoji La',
+        description: 'Drive to Kargil via the picturesque Sonamarg and cross the famous Zoji La Pass (3,450m). Enroute enjoy stunning mountain views and the dramatic landscape change. Visit the Kargil War Memorial. Meals: Breakfast, Dinner. Stay: Kargil.'
+      },
+      {
+        day: 5,
+        title: 'Kargil to Leh via Lamayuru & Alchi',
+        description: 'Drive to Leh visiting the ancient Lamayuru Monastery (hanging in mid-air) and Alchi Monastery on the banks of Indus River. Enroute see the Magnetic Hill and Sangam (confluence of Indus and Zanskar rivers). Meals: Breakfast, Dinner. Stay: Leh.'
+      },
+      {
+        day: 6,
+        title: 'Leh to Nubra Valley via Khardung La Pass',
+        description: 'Cross Khardung La Pass (5,359m) - one of the world\'s highest motorable passes. Descend into Nubra Valley. Visit Diskit Monastery and enjoy the sand dunes of Hunder. Overnight in Nubra. Meals: Breakfast, Dinner. Stay: Nubra Valley.'
+      },
+      {
+        day: 7,
+        title: 'Nubra to Pangong Lake via Shyok Valley',
+        description: 'Drive to Pangong Lake via the scenic Shyok Valley. Arrive at the stunning Pangong Lake (4,350m) and witness the changing colors of the lake. Camping by the lakeside under the stars. Meals: Breakfast, Dinner. Stay: Pangong Lake.'
+      },
+      {
+        day: 8,
+        title: 'Pangong Lake to Leh via Chang La',
+        description: 'Drive back to Leh crossing the Chang La Pass (5,360m). Enroute enjoy the breathtaking landscapes. Evening at leisure in Leh market. Farewell dinner. Meals: Breakfast, Dinner. Stay: Leh.'
+      },
+      {
+        day: 9,
+        title: 'Departure from Leh Airport',
+        description: 'After breakfast, transfer to Leh Airport for your onward journey. Depart with unforgettable memories of Kashmir and Ladakh. Meals: Breakfast.'
+      }
+    ],
+    images: [
+      'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200&q=80',
+      'https://images.unsplash.com/photo-1537126694932-c0f39026528e?w=800&q=80',
+      'https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&q=80',
+      'https://images.unsplash.com/photo-1609766857041-ed402ea8069a?w=800&q=80'
+    ],
+    price: {
+      perPerson: 54999,
+      discount: 10,
+      includes: [
+        '8 nights premium accommodation',
+        'Daily breakfast & dinner',
+        'Private cab in Kashmir and Leh',
+        'Gondola ride in Gulmarg',
+        'Camel safari in Nubra',
+        'Camping at Pangong Lake',
+        'All permits and fees',
+        'Oxygen cylinders for high altitude'
+      ],
+      excludes: [
+        'Airfare to/from Srinagar and from Leh',
+        'Lunch meals',
+        'Personal gear and equipment',
+        'Travel insurance (mandatory)',
+        'Personal expenses',
+        'Camera fees',
+        'Tips and gratuities',
+        'Anything not mentioned in includes'
+      ]
+    }
   }
 };
 

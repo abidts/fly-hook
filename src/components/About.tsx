@@ -27,7 +27,7 @@ export default function About() {
                 { icon: Mountain, label: 'Kashmir Experts', value: 'Local team' },
                 { icon: MapPin, label: 'Curated Spots', value: 'Hidden gems' },
                 { icon: Compass, label: 'Tailored Plans', value: 'Custom trips' },
-                { icon: Shield, label: 'Trusted Service', value: 'Since 2014' },
+                { icon: Shield, label: 'Trusted Service', value: 'Since 2025' },
               ].map((item) => (
                 <div key={item.label} className="rounded-2xl border border-slate-800 bg-slate-900/60 p-4 flex gap-3 items-center">
                   <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-400">

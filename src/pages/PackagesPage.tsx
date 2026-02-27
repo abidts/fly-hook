@@ -96,6 +96,32 @@ const packages = [
     includes: ['Hotel', 'Meal', 'Transfer', 'Sightseeing', 'Activities'],
     slug: 'short-adventure-trip',
   },
+  {
+    name: 'Kashmir With Katra',
+    duration: '6 Nights / 7 Days',
+    image: 'https://res.cloudinary.com/dveg0ai0n/image/upload/v1772188951/katra_w2iqdq.jpg',
+    destinations: ['Srinagar', 'Gulmarg', 'Pahalgam', 'Katra'],
+    groupSize: '2-8',
+    rating: '4.9',
+    reviews: 178,
+    tag: 'Spiritual',
+    tagColor: 'from-amber-500 to-orange-600',
+    includes: ['Luxury Stay', 'Private Cab', 'All Meals', 'Transfer', 'Stay', 'Sightseeing'],
+    slug: 'kashmir-with-katra',
+  },
+  {
+    name: 'Kashmir With Ladakh',
+    duration: '8 Nights / 9 Days',
+    image: 'https://res.cloudinary.com/dveg0ai0n/image/upload/v1771496833/3_idiots_scooter_Pangong_Lake_Leh_dwwwvp.jpg',
+    destinations: ['Srinagar', 'Gulmarg', 'Leh', 'Pangong', 'Nubra'],
+    groupSize: '2-6',
+    rating: '4.9',
+    reviews: 203,
+    tag: 'Premium',
+    tagColor: 'from-purple-500 to-indigo-600',
+    includes: ['Camels', 'Dunes', 'All Meals', 'Transfer', 'Stay', 'Sightseeing'],
+    slug: 'kashmir-with-ladakh',
+  },
 ];
 
 export default function PackagesPage() {

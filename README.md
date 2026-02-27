@@ -348,7 +348,7 @@ We welcome contributions! Please follow these steps:
 
 ### Social Media
 - Instagram: [@flyhooktours](https://instagram.com/flyhooktours)
-- Facebook: [Fly Hook Tours](https://facebook.com/flyhooktours)
+- Facebook: [Fly Hook Tours](https://www.facebook.com/profile.php?id=61583166238042)
 - YouTube: [Fly Hook Travels](https://youtube.com/@flyhooktravels)
 
 ---

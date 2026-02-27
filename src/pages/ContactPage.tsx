@@ -97,7 +97,7 @@ const ContactPage: React.FC = () => {
                 Instagram
               </a>
               <a
-                href="https://www.facebook.com/people/Fly-Hook-TourandTravel/pfbid0NaqBzdXHyKNU3VgFnXdwdqRpyoPTPH3zMcAdxkriAseeCtSJvKti1XoCcavZ1GwWl/?mibextid=rS40aB7S9Ucbxw6v"
+                href="https://www.facebook.com/profile.php?id=61583166238042"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 px-6 py-3 text-white font-semibold transition-all hover:scale-105 hover:shadow-lg hover:shadow-blue-500/30"

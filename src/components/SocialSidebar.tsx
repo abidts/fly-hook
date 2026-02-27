@@ -13,7 +13,7 @@ export default function SocialSidebar() {
         <Instagram className="h-5 w-5" />
       </a>
       <a
-        href="https://www.facebook.com/profile.php?id=61575791690265&mibextid=rS40aB7S9Ucbxw6v"
+        href="https://www.facebook.com/profile.php?id=61583166238042"
         target="_blank"
         rel="noopener noreferrer"
         className="flex h-10 w-10 items-center justify-center text-slate-400 hover:text-emerald-400 transition-colors"

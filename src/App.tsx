@@ -1,4 +1,6 @@
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 import HeroSlider from './components/HeroSlider';
 import Cabs from './components/Cabs';
 import Hotels from './components/Hotels';
@@ -53,6 +55,15 @@ export default function App() {
             <div className="w-20 h-1 bg-gradient-to-r from-amber-400 to-orange-400 mx-auto rounded-full mt-4" />
           </div>
           <Cabs />
+          <div className="mt-8 text-center">
+            <Link
+              to="/cabs"
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-amber-500/30 transition-all hover:shadow-amber-500/50 hover:scale-105"
+            >
+              View All Cabs
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -67,7 +78,16 @@ export default function App() {
             </p>
             <div className="w-20 h-1 bg-gradient-to-r from-amber-400 to-orange-400 mx-auto rounded-full mt-4" />
           </div>
-          <Hotels />
+          <Hotels showViewAll={false} />
+          <div className="mt-8 text-center">
+            <Link
+              to="/hotels"
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-500 to-orange-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-amber-500/30 transition-all hover:shadow-amber-500/50 hover:scale-105"
+            >
+              View All Hotels
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
         </div>
       </section>
 
