@@ -590,33 +590,33 @@ const packages: Record<string, PackageData> = {
     itinerary: [
       {
         day: 1,
-        title: 'Arrival in Srinagar',
-        description: 'Arrive at Srinagar Airport and receive a warm welcome. Transfer to your hotel/houseboat. Evening at leisure for a relaxing Shikara ride on Dal Lake. Overnight stay in Srinagar.'
+        title: 'Arrival in Jammu - Transfer to Katra',
+        description: 'Arrive at Jammu Airport and receive a warm welcome. Transfer to Katra (approx 1.5-2 hours). Check into hotel and rest. Evening at leisure for shopping at Katra market. Overnight stay in Katra.'
       },
       {
         day: 2,
-        title: 'Srinagar to Katra',
-        description: 'After breakfast, transfer to Katra (approx 5-6 hours). Check into hotel and rest. Evening visit to Katra market and prepare for Vaishno Devi darshan. Overnight in Katra.'
+        title: 'Vaishno Devi Darshan',
+        description: 'Early morning start for Vaishno Devi pilgrimage. Trek or use pony/palki services to reach the holy shrine for darshan. After darshan, return to hotel and rest. Overnight in Katra.'
       },
       {
         day: 3,
-        title: 'Vaishno Devi Darshan',
-        description: 'Early morning start for Vaishno Devi pilgrimage. Trek or use pony/palki services to reach the holy shrine. After darshan, return to hotel. Overnight in Katra.'
+        title: 'Katra to Pahalgam',
+        description: 'After breakfast, drive to Pahalgam - the valley of love (approx 4-5 hours). Check into hotel and enjoy the scenic beauty of Lidder Valley. Evening at leisure. Overnight stay in Pahalgam.'
       },
       {
         day: 4,
-        title: 'Katra to Srinagar via Pahalgam',
-        description: 'Drive back to Kashmir valley. Enroute visit the beautiful Pahalgam - the valley of love. See Lidder River, Betaab Valley. Overnight stay in Pahalgam/Srinagar.'
+        title: 'Pahalgam to Srinagar',
+        description: 'After breakfast, drive to Srinagar (approx 2-3 hours). Check into hotel/houseboat. Evening enjoy a relaxing Shikara ride on Dal Lake. Overnight stay in Srinagar.'
       },
       {
         day: 5,
-        title: 'Srinagar to Gulmarg',
-        description: 'After breakfast, drive to Gulmarg - the meadow of flowers. Enjoy the Gondola ride to Apharwat Peak. Explore the scenic beauty. Return to Srinagar. Overnight stay.'
+        title: 'Sonamarg Day Trip',
+        description: 'Full day excursion to Sonamarg - the meadow of gold. Enjoy the stunning views of Thajiwas Glacier and the Sind River. Return to Srinagar in the evening. Overnight stay.'
       },
       {
         day: 6,
-        title: 'Srinagar Local Sightseeing',
-        description: 'Full day exploring Srinagar - visit Mughal Gardens (Shalimar Bagh, Nishat Bagh), Shankaracharya Temple, local markets at Lal Chowk. Farewell dinner. Overnight in Srinagar.'
+        title: 'Gulmarg Day Trip',
+        description: 'After breakfast, drive to Gulmarg - the meadow of flowers. Enjoy the Gondola ride to Apharwat Peak. Explore the scenic beauty and snow-capped peaks. Return to Srinagar. Overnight stay.'
       },
       {
         day: 7,

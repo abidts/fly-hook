@@ -236,16 +236,20 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="border-t border-slate-800">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-5 sm:py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-xs sm:text-sm text-slate-500 text-center sm:text-left">
-            © 2026 FLY HOOK Tour & Travel. All rights reserved.
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-3">
+          <p className="text-[10px] sm:text-xs text-slate-500 text-center sm:text-left">
+            © 2026 FLY HOOK TOUR & TRAVEL.
           </p>
-          <div className="text-center sm:text-right">
-            <p className="text-xs text-slate-600">Powered By</p>
-            <p className="text-xs sm:text-sm text-slate-500">
-              EnnBi Softwares Pvt Ltd.
-            </p>
-          </div>
+          <p className="text-[10px] sm:text-xs text-slate-500">
+            Powered By <a
+              href="https://www.instagram.com/kashmircreatick?igsh=MmpjOHFla3VrOGVs"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-emerald-400 hover:text-emerald-300 transition-colors font-medium"
+            >
+              Kashmir Creatick
+            </a>
+          </p>
         </div>
       </div>
     </footer>
